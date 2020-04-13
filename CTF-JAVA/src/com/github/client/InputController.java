@@ -11,9 +11,8 @@ public class InputController extends JFrame{
 		this.setVisible(true);
 		this.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
-				setDir(e.getKeyChar());
-				if(getDir() == 'w' || getDir() == 'a' || getDir() == 's' || getDir() == 'd'){
-					System.out.println(getDir());
+				if(e.getKeyChar() == 'w' || e.getKeyChar() == 'a' || e.getKeyChar() == 's' || e.getKeyChar() == 'd'){
+					setDir(e.getKeyChar());
 				}
 			}
 		});
