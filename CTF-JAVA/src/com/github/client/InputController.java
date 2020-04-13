@@ -1,4 +1,4 @@
-package Client;
+package com.github.client;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 public class InputController extends JFrame{
 	public char dir;
+	
 	public InputController() {
 		this.setVisible(true);
 		this.addKeyListener(new KeyAdapter() {
