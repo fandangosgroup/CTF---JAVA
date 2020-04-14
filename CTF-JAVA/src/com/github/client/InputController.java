@@ -1,5 +1,6 @@
 package com.github.client;
 
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
@@ -9,6 +10,9 @@ public class InputController extends JFrame{
 	
 	public InputController() {
 		this.setVisible(true);
+                //this.setSize(100, 100);
+                this.setBackground(Color.black);
+                
 		this.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyChar() == 'w' || e.getKeyChar() == 'a' || e.getKeyChar() == 's' || e.getKeyChar() == 'd'){
@@ -17,7 +21,9 @@ public class InputController extends JFrame{
 			}
 		});
 	}
-	
+	public void dirToZero(){
+            setDir(' ');
+        }
 	public char getDir() {
 		return dir;
 	}

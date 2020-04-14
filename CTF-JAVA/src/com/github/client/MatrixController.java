@@ -16,26 +16,30 @@ public class MatrixController {
             //pra cima == -1 no x
             case 'w':
                 this.clearCurrenPostion();
-                this.positionX -= this.positionX;
+                this.positionX = this.positionX - 1;
                 this.data[this.positionX][this.positionY] = 'X';
+                input.dirToZero();
                 break;
             //pra baixo == +1 no x
             case 's':
                 this.clearCurrenPostion();
-               this.positionX += this.positionX;
+                this.positionX = this.positionX + 1;
                 this.data[this.positionX][this.positionY] = 'X';
+                input.dirToZero();
                 break;
             //pra esquerda = y-1
             case 'a':
                 this.clearCurrenPostion();
-                this.positionY -= this.positionY;
+                this.positionY = this.positionY - 1;
                 this.data[this.positionX][this.positionY] = 'X';
+                input.dirToZero();
                 break;
             //pra direita = y + 1
             case 'd':
                 this.clearCurrenPostion();
-                 this.positionY += this.positionY;
+                 this.positionY = this.positionY + 1;
                 this.data[this.positionX][this.positionY] = 'X';
+                input.dirToZero();
                 break;
        }
        
