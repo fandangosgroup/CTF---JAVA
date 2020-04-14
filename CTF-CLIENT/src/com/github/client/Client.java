@@ -2,11 +2,11 @@ package com.github.client;
 
 import java.io.IOException;
 
-public class Ctf {
+public class Client {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
-		//new SendDataControl("127.0.0.1", 12345).executa();
+		//new SocketRequestControl("127.0.0.1", 12345).executa();
 		char[][] data = new char[30][30];
 	       InputController input = new InputController();
 	       MatrixController matrix = new MatrixController(data);
