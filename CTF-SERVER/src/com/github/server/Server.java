@@ -1,6 +1,7 @@
 package com.github.server;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -19,6 +20,15 @@ public class Server {
     public Server (int porta) {
         this.porta = porta;
         this.clientes = new ArrayList<Clientes>();
+    }
+    
+    public void unsetCliente(int id) {
+    	for(Clientes cli : this.clientes) {
+    		if(cli.getID() == id) {
+    			this.clientes.remove(cli);
+    			break;
+    		}
+    	}
     }
 
     public void executa () throws IOException {
@@ -40,24 +50,73 @@ public class Server {
             id1 = id1 + id2;
             int aux = Integer.parseInt(id1);
             
-            Clientes cl = new Clientes(ps, aux);
-            this.clientes.add(cl);
+//            Clientes cl = new Clientes(ps, aux, cliente.getInputStream());
+//            this.clientes.add(cl);
 
             // cria tratador de cliente numa nova thread
-            TrataCliente tc = new TrataCliente(cliente.getInputStream(), aux, this);
+            TrataCliente tc = new TrataCliente(ps, cliente.getInputStream(), aux, this);
+            Clientes cl = tc.getCliente();
+            this.clientes.add(cl);
             new Thread(tc).start();
         }
+        
 
     }
 
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
+    	System.out.println("msg:"+msg);
+    	
+    	char[][] data = new char[30][30];
+    	int x,y;
+		for(x = 0; x < 30; x++) {
+			for(y = 0; y <30; y++) {
+				if(x == 0 || y == 0) {
+					data[x][y] = '#';
+				}
+				if(x == 29 || y == 29) {
+					data[x][y] = '#';
+				}
+
+			}
+		}
+		data[10][10] = 'X';
+    	
+    	
         for (Clientes cliente : this.clientes) {
-        	System.out.println(msg);
-        	System.out.println(id);
+        	//System.out.println(msg);
+        	System.out.println("id:"+id);
+        	//System.out.println("Cl:"+cliente.getID());
+        	
+        	cliente.getCliente().println("Quantidade:"+this.clientes.size());
+        	
         	if(cliente.getID() == id) {
+        		//System.out.println("entrou no if");
+        		//cliente.getCliente().println(data);
+        		
         		cliente.getCliente().println(msg);
-        	}	
+        		//System.out.println(cliente.getCliente().checkError());
+        		
+        		//System.out.println("chegou no if fim");
+        		
+        		//cliente.getCliente().println(msg);
+        	}
+        	
+        	
+//        	int cond;
+//			try {
+//				cond = cliente.getCli().read();
+//				if(cond == -1) {
+//					System.out.println("Jogador Desconectado");
+//					this.clientes.remove(cliente);
+//				}else {
+//					System.out.println("Jogador Conectado");
+//				}
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			
         }
     }
 }

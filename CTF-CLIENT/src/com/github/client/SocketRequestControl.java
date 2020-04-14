@@ -17,23 +17,39 @@ public class SocketRequestControl {
         this.porta = porta;
     }
 
-	public void executa() throws UnknownHostException, IOException {
+	public void executa() throws UnknownHostException, IOException, InterruptedException {
         Socket cliente = new Socket(this.host, this.porta);
         System.out.println("O cliente se conectou ao servidor!");
 
-        // thread para receber mensagens do servidor
-        Recebedor r = new Recebedor(cliente.getInputStream());
+        
+        char[][] data = new char[30][30];
+	    InputController input = new InputController();
+	    MatrixController matrix = new MatrixController(data);
+	    PrintConsole print = new PrintConsole();
+	    
+		// thread para receber mensagens do servidor
+	    Recebedor r = new Recebedor(cliente.getInputStream());
+	    
         new Thread(r).start();
-
+        
         // lê msgs do teclado e manda pro servidor
-        Scanner teclado = new Scanner(System.in);
+       
         PrintStream saida = new PrintStream(cliente.getOutputStream());
-        while (teclado.hasNextLine()) {
-            saida.println(teclado.nextLine());
-        }
+      
+        	//saida.println("Me envie a matriz!");
+ 	       
+ 	       	boolean GameOver = false;
+			
+			while(!GameOver) {
+				Thread.sleep(200);
+				saida.println("Me envie a matriz!");
+	            data = matrix.dataManipulation(input);
+				Client.CleanScreen();
+				print.setMatriz(data);
+				print.RenderPrintConsole(true);
+			}
 
         saida.close();
-        teclado.close();
         cliente.close();
     }                
     
@@ -53,5 +69,4 @@ public class SocketRequestControl {
             }
         }
     }
-  
 }
