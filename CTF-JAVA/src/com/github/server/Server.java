@@ -14,11 +14,11 @@ public class Server {
     }
 
     private int porta;
-    private List<PrintStream> clientes;
+    private List<Clientes> clientes;
 
     public Server (int porta) {
         this.porta = porta;
-        this.clientes = new ArrayList<PrintStream>();
+        this.clientes = new ArrayList<Clientes>();
     }
 
     public void executa () throws IOException {
@@ -28,26 +28,36 @@ public class Server {
         while (true) {
             // aceita um cliente
             Socket cliente = servidor.accept();
-            System.out.println("Nova conexão com o cliente " +     
-                cliente.getInetAddress().getHostAddress()
-            );
-
+            System.out.println("Nova conexão com o cliente " + cliente.getInetAddress().getHostAddress());
+            System.out.println(cliente.getRemoteSocketAddress());
+            
             // adiciona saida do cliente à lista
             PrintStream ps = new PrintStream(cliente.getOutputStream());
-            this.clientes.add(ps);
+            
+            String id1,id2;
+            id1 = cliente.getRemoteSocketAddress().toString().substring(1, 4);
+            id2 = cliente.getRemoteSocketAddress().toString().substring(11, 16);
+            id1 = id1 + id2;
+            int aux = Integer.parseInt(id1);
+            
+            Clientes cl = new Clientes(ps, aux);
+            this.clientes.add(cl);
 
             // cria tratador de cliente numa nova thread
-            TrataCliente tc = new TrataCliente(cliente.getInputStream(), this);
+            TrataCliente tc = new TrataCliente(cliente.getInputStream(), aux, this);
             new Thread(tc).start();
         }
 
     }
 
-    public void distribuiMensagem(String msg) {
+    public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
-        for (PrintStream cliente : this.clientes) {
+        for (Clientes cliente : this.clientes) {
         	System.out.println(msg);
-            cliente.println(msg);
+        	System.out.println(id);
+        	if(cliente.getID() == id) {
+        		cliente.getCliente().println(msg);
+        	}	
         }
     }
 }

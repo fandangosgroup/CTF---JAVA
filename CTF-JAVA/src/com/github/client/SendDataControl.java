@@ -34,7 +34,7 @@ public class SendDataControl {
 
         saida.close();
         teclado.close();
-        cliente.close();        
+        cliente.close();
     }                
     
     public class Recebedor implements Runnable {
