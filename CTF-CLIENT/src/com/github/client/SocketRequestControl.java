@@ -7,12 +7,12 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
   
-public class SendDataControl {
+public class SocketRequestControl {
   
     private String host;
     private int porta;
     
-    public SendDataControl (String host, int porta) {
+    public SocketRequestControl (String host, int porta) {
         this.host = host;
         this.porta = porta;
     }
