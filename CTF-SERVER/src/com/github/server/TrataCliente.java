@@ -2,6 +2,7 @@ package com.github.server;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TrataCliente implements Runnable {
@@ -22,6 +23,11 @@ public class TrataCliente implements Runnable {
     public Clientes getCliente() {
         Clientes cli = new Clientes(this.ps, this.id, this.cliente);
         return cli;
+    }
+    
+    public Positions getPos() {
+        Positions pos = new Positions(this.id, new Random().nextInt(15), new Random().nextInt(5));
+        return pos;
     }
 
     public void run() {

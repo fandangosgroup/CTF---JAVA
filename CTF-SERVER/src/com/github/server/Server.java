@@ -9,17 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
   
 public class Server {
+	private int porta;
+    private List<Clientes> clientes;
+    private List<Positions> positions;
+	
 	public static void main(String[] args) throws IOException {
         // inicia o servidor
         new Server(12345).executa();
     }
 
-    private int porta;
-    private List<Clientes> clientes;
-
     public Server (int porta) {
         this.porta = porta;
         this.clientes = new ArrayList<Clientes>();
+        this.positions = new ArrayList<Positions>();
     }
     
     public void unsetCliente(int id) {
@@ -33,7 +35,9 @@ public class Server {
 
     public void executa () throws IOException {
         ServerSocket servidor = new ServerSocket(this.porta);
+        System.out.println("Servidor Aberto!");
         System.out.println("Porta 12345 aberta!");
+        System.out.println("Iniciado!");
 
         while (true) {
             // aceita um cliente
@@ -56,8 +60,13 @@ public class Server {
             // cria tratador de cliente numa nova thread
             ps.println("idUser:"+aux);
             TrataCliente tc = new TrataCliente(ps, cliente.getInputStream(), aux, this);
+            
             Clientes cl = tc.getCliente();
             this.clientes.add(cl);
+            
+            Positions pos = tc.getPos();
+            this.positions.add(pos);
+            
             new Thread(tc).start();
         }
         
@@ -66,14 +75,32 @@ public class Server {
 
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
-    	System.out.println("msg:"+msg);
+    	//System.out.println("msg:"+msg);
+    	String location = null;
+    	int aux;
     	
         for (Clientes cliente : this.clientes) {
         	//System.out.println(msg);
-        	System.out.println("id:"+id);
+        	//System.out.println("id:"+id);
         	//System.out.println("Cl:"+cliente.getID());
         	
         	cliente.getCliente().println("Quantidade:"+this.clientes.size());
+        	
+        	for (Positions Pos : this.positions) {//12 10 20
+        		aux = Pos.getPosID();
+        		location = Integer.toString(aux);
+        		location = location + ',';
+        		
+        		aux = Pos.getPosX();
+        		location = location + Integer.toString(aux);
+        		location = location + ',';
+        		
+        		aux = Pos.getPosY();
+        		location = location + Integer.toString(aux);
+        		location = location + '|';
+        	}
+        	
+        	System.out.print(location);
         	
         	if(cliente.getID() == id) {
         		//System.out.println("entrou no if");
