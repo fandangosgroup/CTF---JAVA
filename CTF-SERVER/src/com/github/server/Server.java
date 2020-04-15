@@ -100,15 +100,15 @@ public class Server {
     		
     		aux = Pos.getPosID();
     		location = location + Integer.toString(aux);
-    		location = location + ',';
+    		location = location + '-';
     		
     		aux = Pos.getPosX();
     		location = location + Integer.toString(aux);
-    		location = location + ',';
+    		location = location + '-';
     		
     		aux = Pos.getPosY();
     		location = location + Integer.toString(aux);
-    		location = location + '|';
+    		location = location + ',';
     	}
     	
         for (Clientes cliente : this.clientes) {
