@@ -54,6 +54,7 @@ public class Server {
 //            this.clientes.add(cl);
 
             // cria tratador de cliente numa nova thread
+            ps.println("idUser:"+aux);
             TrataCliente tc = new TrataCliente(ps, cliente.getInputStream(), aux, this);
             Clientes cl = tc.getCliente();
             this.clientes.add(cl);
