@@ -32,6 +32,15 @@ public class Server {
     		}
     	}
     }
+    
+    public void unsetPos(int id) {
+    	for(Positions pos : this.positions) {
+    		if(pos.getPosID() == id) {
+    			this.positions.remove(pos);
+    			break;
+    		}
+    	}
+    }
 
     public void executa () throws IOException {
         ServerSocket servidor = new ServerSocket(this.porta);
@@ -78,8 +87,17 @@ public class Server {
     	//System.out.println("msg:"+msg);
     	String location = "M4X";
     	int aux;
+    	String[] loc = null;
+    	loc = msg.split(",");
     	
     	for (Positions Pos : this.positions) {//12 10 20
+    		if(msg.substring(0, 3) == "M4X") {
+        		if(Pos.getPosID() == id) {
+        			Pos.setPosX(Integer.parseInt(loc[1]));
+        			Pos.setPosY(Integer.parseInt(loc[2]));
+        		}
+        	}
+    		
     		aux = Pos.getPosID();
     		location = location + Integer.toString(aux);
     		location = location + ',';

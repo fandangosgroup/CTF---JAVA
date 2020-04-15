@@ -39,7 +39,8 @@ public class TrataCliente implements Runnable {
 			
         }
      // Saiu do loop, é porque desconectou...
-        servidor.unsetCliente(id); // Remove da lista de clientes da classe Servidor lá trás...
+        servidor.unsetCliente(id);// Remove da lista de clientes da classe Servidor
+        servidor.unsetPos(id);//remove posição do jogador desconectado
         System.out.println("Cliente " + id + " desconectado!");
 
         s.close();

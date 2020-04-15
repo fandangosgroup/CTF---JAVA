@@ -22,4 +22,12 @@ public class Positions {
 	public int getPosID() {
 		return this.id;
 	}
+	
+	public void setPosX(int x) {
+		this.x = x;
+	}
+	
+	public void setPosY(int y) {
+		this.y = y;
+	}
 }
