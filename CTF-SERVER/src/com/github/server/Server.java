@@ -76,8 +76,22 @@ public class Server {
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
     	//System.out.println("msg:"+msg);
-    	String location = null;
+    	String location = "";
     	int aux;
+    	
+    	for (Positions Pos : this.positions) {//12 10 20
+    		aux = Pos.getPosID();
+    		location = location + Integer.toString(aux);
+    		location = location + ',';
+    		
+    		aux = Pos.getPosX();
+    		location = location + Integer.toString(aux);
+    		location = location + ',';
+    		
+    		aux = Pos.getPosY();
+    		location = location + Integer.toString(aux);
+    		location = location + '|';
+    	}
     	
         for (Clientes cliente : this.clientes) {
         	//System.out.println(msg);
@@ -86,21 +100,9 @@ public class Server {
         	
         	cliente.getCliente().println("Quantidade:"+this.clientes.size());
         	
-        	for (Positions Pos : this.positions) {//12 10 20
-        		aux = Pos.getPosID();
-        		location = Integer.toString(aux);
-        		location = location + ',';
-        		
-        		aux = Pos.getPosX();
-        		location = location + Integer.toString(aux);
-        		location = location + ',';
-        		
-        		aux = Pos.getPosY();
-        		location = location + Integer.toString(aux);
-        		location = location + '|';
-        	}
         	
-        	//System.out.print(location);
+        	
+        	System.out.println(location);
         	cliente.getCliente().println(location);
         	
         	if(cliente.getID() == id) {
