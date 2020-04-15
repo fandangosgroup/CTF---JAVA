@@ -68,22 +68,6 @@ public class Server {
         // envia msg para todo mundo
     	System.out.println("msg:"+msg);
     	
-    	char[][] data = new char[30][30];
-    	int x,y;
-		for(x = 0; x < 30; x++) {
-			for(y = 0; y <30; y++) {
-				if(x == 0 || y == 0) {
-					data[x][y] = '#';
-				}
-				if(x == 29 || y == 29) {
-					data[x][y] = '#';
-				}
-
-			}
-		}
-		data[10][10] = 'X';
-    	
-    	
         for (Clientes cliente : this.clientes) {
         	//System.out.println(msg);
         	System.out.println("id:"+id);
@@ -102,21 +86,6 @@ public class Server {
         		
         		//cliente.getCliente().println(msg);
         	}
-        	
-        	
-//        	int cond;
-//			try {
-//				cond = cliente.getCli().read();
-//				if(cond == -1) {
-//					System.out.println("Jogador Desconectado");
-//					this.clientes.remove(cliente);
-//				}else {
-//					System.out.println("Jogador Conectado");
-//				}
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 			
         }
     }

@@ -29,7 +29,6 @@ public class SocketRequestControl {
 	    
 		// thread para receber mensagens do servidor
 	    Recebedor r = new Recebedor(cliente.getInputStream());
-	    
         new Thread(r).start();
         
         // lê msgs do teclado e manda pro servidor
