@@ -100,7 +100,8 @@ public class Server {
         		location = location + '|';
         	}
         	
-        	System.out.print(location);
+        	//System.out.print(location);
+        	cliente.getCliente().println(location);
         	
         	if(cliente.getID() == id) {
         		//System.out.println("entrou no if");
