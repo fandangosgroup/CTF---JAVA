@@ -76,7 +76,7 @@ public class Server {
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
     	//System.out.println("msg:"+msg);
-    	String location = "";
+    	String location = "M4X";
     	int aux;
     	
     	for (Positions Pos : this.positions) {//12 10 20
@@ -96,11 +96,9 @@ public class Server {
         for (Clientes cliente : this.clientes) {
         	//System.out.println(msg);
         	//System.out.println("id:"+id);
-        	//System.out.println("Cl:"+cliente.getID());
+        	System.out.println("Cl:"+cliente.getID());
         	
         	cliente.getCliente().println("Quantidade:"+this.clientes.size());
-        	
-        	
         	
         	System.out.println(location);
         	cliente.getCliente().println(location);
