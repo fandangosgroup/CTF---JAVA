@@ -3,6 +3,7 @@ package com.github.client;
 public class PrintConsole {
 	private Object SocketRequest;
 	private char[][] matriz;
+	private String id;
 	
 	public void setMatriz(char[][] matriz) {
 		this.matriz = matriz;
@@ -15,6 +16,7 @@ public class PrintConsole {
 			for(x = 0; x < 30; x++) {
 				for(y = 0; y < 30; y++) {
 					System.out.print(this.matriz[x][y]);
+					
 				}
 				System.out.println(' ');
 			}
