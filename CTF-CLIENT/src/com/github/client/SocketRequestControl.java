@@ -74,12 +74,16 @@ public class SocketRequestControl {
             Scanner s = new Scanner(this.servidor);
             while (s.hasNextLine()) {
             	this.inputController = s.nextLine();
+            	//System.out.println("aqiu:"+this.inputController.substring(0, 3));
+            	
             	if(this.inputController.substring(0, 7).equals("idUser:")) {
             		this.id = this.inputController.substring(7, 15);
             		this.data = "EUODEIOMINHAVIDA";
             	}
             	else if(this.inputController.substring(0, 3).equals("M4X")) {
+            		//System.out.print("ENTROUEEEEEEEEEEEEEEEEEEEEEEEEE");
             		this.data = inputController;
+            		break;
             	}else {
             		this.data = "EUODEIOMINHAVIDA";
             	}
