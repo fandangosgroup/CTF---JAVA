@@ -14,18 +14,17 @@ public class MatrixController {
     
     public MatrixController(String id, char[][] d){
     	this.nop = false;
-    	this.id = "12749811";
+    	this.id = id;
         setData(d);
     }
     
     public char[][] dataManipulation(InputController input, String dados){
-    	dados = "M4X12749793-3-3,12749811-2-2,12749822-1-1,";
        char moviment = input.getDir();
        String[] processedData = null;
        this.processDados(dados);
        System.out.println(this.enimyPositions);
        this.drawMatriz();
-       this.enimyPositions.clear();
+       //this.enimyPositions.clear();
        
        /*this.findPosition();
        switch(moviment){
