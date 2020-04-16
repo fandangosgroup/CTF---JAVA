@@ -6,10 +6,12 @@ public class MatrixController {
     //vai receber um response do servidor que vai ter uma matriz
     private char[][] data = new char[30][30];
     private String id;
-    private int positionX;
-    private int positionY;
+    private Integer positionX;
+    private Integer positionY;
+    private boolean nop;
     public MatrixController(String id, char[][] d){
-    	this.id = id;
+    	this.nop = false;
+    	this.id = "12760978";
         setData(d);
         this.drawMatrizLimit();
     }
@@ -71,21 +73,48 @@ public class MatrixController {
     	String data = dados.substring(3, dados.length());
     	String[] colunas = null;
     	boolean ret;
-    	int myPosition;
+    	int myPosition = 102938;
     	if(dados != null) {
     		colunas = data.split(",");
     		for(int x = 0; x < colunas.length; x++) {
     			ret = colunas[x].matches(this.id + "(.*)");
     			if(ret == true) {
-    				System.out.printf("sua posição eh %d", x);
+    				myPosition = x;
     			}else {
     				System.out.printf("id nao encontrado");
     			}
     			
     		}
+    	this.positionX = this.getX(myPosition, colunas);
+    	this.positionY = this.getY(myPosition, colunas);
+    	
+    	System.out.printf("x é %d\n",this.positionX);
+    	System.out.printf("y é %d\n",this.positionX);
     		System.exit(0);
     	}
     	 
+    }
+    private Integer getX(int x, String[] data){
+    	String[] aux;
+    	if(x == 102938) {
+    		this.nop = true;
+    		return x;
+    	}
+    	aux = data[x].split("-");
+    	return Integer.parseInt(aux[1]);
+    }
+    
+    private Integer getY(int y, String[] data) {
+    	String[] aux;
+    	if(y == 102938) {
+    		this.nop = true;
+    		return y;
+    	}
+    	aux = data[y].split("-");
+    	for(int x = 0; x < aux.length; x++) {
+    		System.out.println(aux[x]);
+    	}
+    	return Integer.parseInt(aux[1]);
     }
     private void clearCurrenPostion(){
        this.data[this.positionX][this.positionY] = ' ';
