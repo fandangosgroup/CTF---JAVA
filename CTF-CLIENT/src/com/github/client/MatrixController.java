@@ -20,12 +20,8 @@ public class MatrixController {
        System.out.println(this.id);
        System.out.println(dados);
        String[] processedData = null;
-       processedData = this.processDados(dados);
-       if(processedData != null) {
-    	   for(int x = 0; x < processedData.length; x++) {
-        	   System.out.println(processedData);
-           }
-       }
+       this.processDados(dados);
+      
        /*this.findPosition();
        switch(moviment){
             //pra cima == -1 no x
@@ -71,18 +67,25 @@ public class MatrixController {
             }
         }
     }
-    private String[] processDados(String dados){
+    private void processDados(String dados){
     	String data = dados.substring(3, dados.length());
     	String[] colunas = null;
+    	boolean ret;
+    	int myPosition;
     	if(dados != null) {
     		colunas = data.split(",");
     		for(int x = 0; x < colunas.length; x++) {
-    			System.out.println(colunas[x]);
+    			ret = colunas[x].matches(this.id + "(.*)");
+    			if(ret == true) {
+    				System.out.printf("sua posição eh %d", x);
+    			}else {
+    				System.out.printf("id nao encontrado");
+    			}
+    			
     		}
     		System.exit(0);
     	}
     	 
-    	return colunas;
     }
     private void clearCurrenPostion(){
        this.data[this.positionX][this.positionY] = ' ';
