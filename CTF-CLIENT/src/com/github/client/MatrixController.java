@@ -14,15 +14,19 @@ public class MatrixController {
     
     public MatrixController(String id, char[][] d){
     	this.nop = false;
-    	this.id = id;
+    	this.id = "12749811";
         setData(d);
     }
     
     public char[][] dataManipulation(InputController input, String dados){
+    	dados = "M4X12749793-3-3,12749811-2-2,12749822-1-1,";
        char moviment = input.getDir();
        String[] processedData = null;
-       this.processDados(dados);  
+       this.processDados(dados);
+       System.out.println(this.enimyPositions);
        this.drawMatriz();
+       this.enimyPositions.clear();
+       
        /*this.findPosition();
        switch(moviment){
             //pra cima == -1 no x
@@ -104,9 +108,7 @@ public class MatrixController {
        this.data[this.positionX][this.positionY] = ' ';
     }
     private void drawMatriz() {
-    	int z = 0;
     	for (int x = 0; x < getData().length; x++) {
-    		z = x + 1;
     		for (int y = 0; y < getData().length; y++) {
     			if(x == 0 || x == 29 || y == 0 || y == 29) {
     				this.data[x][y] = '#';
@@ -114,14 +116,12 @@ public class MatrixController {
     			if((!this.nop) && x == this.positionX && y == this.positionY) {
     				this.data[x][y] = 'X';
     			}
-    			if(z < this.enimyPositions.size()) {
-    				if(this.enimyPositions.get(x) == x && this.enimyPositions.get(z) == y){
-        				this.data[x][y] = 'O';
-        			}
-    			}
     			
     		}
     	}
+		for(int x = this.enimyPositions.size() - 1; x > 0; x--) {
+			this.data[this.enimyPositions.get(x--)][this.enimyPositions.get(x)] = 'O';
+		}
     	this.nop = false;
     }
     

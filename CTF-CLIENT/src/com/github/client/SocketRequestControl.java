@@ -84,7 +84,7 @@ public class SocketRequestControl {
             		//System.out.print("ENTROUEEEEEEEEEEEEEEEEEEEEEEEEE");
             		this.data = inputController;
             		break;
-            	}else {
+            	}else{
             		this.data = "EUODEIOMINHAVIDA";
             	}
                 System.out.println(s.nextLine());
