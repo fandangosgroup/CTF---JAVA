@@ -72,10 +72,10 @@ public class MatrixController {
         }
     }
     private String[] processDados(String dados){
+    	String data = dados.substring(3, dados.length());
     	String[] colunas = null;
-    	String[] linhas = null;
     	if(dados != null) {
-    		colunas = dados.split(",");
+    		colunas = data.split(",");
     		for(int x = 0; x < colunas.length; x++) {
     			System.out.println(colunas[x]);
     		}
