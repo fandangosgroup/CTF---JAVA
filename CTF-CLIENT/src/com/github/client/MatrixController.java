@@ -3,27 +3,26 @@ package com.github.client;
 import java.util.ArrayList;
 
 public class MatrixController {
-    //vai receber um response do servidor que vai ter uma matriz
     private char[][] data = new char[30][30];
+    private String[] positions = null;
+    private ArrayList<Integer> enimyPositions = new ArrayList<Integer>();
     private String id;
     private Integer positionX;
     private Integer positionY;
     private boolean nop;
+    
+    
     public MatrixController(String id, char[][] d){
     	this.nop = false;
-    	this.id = "12760978";
+    	this.id = id;
         setData(d);
-        this.drawMatrizLimit();
     }
     
     public char[][] dataManipulation(InputController input, String dados){
-       dados = "M4X12760945-10-0,12760978-5-1,12761371-8-3,";
        char moviment = input.getDir();
-       System.out.println(this.id);
-       System.out.println(dados);
        String[] processedData = null;
-       this.processDados(dados);
-      
+       this.processDados(dados);  
+       this.drawMatriz();
        /*this.findPosition();
        switch(moviment){
             //pra cima == -1 no x
@@ -58,21 +57,11 @@ public class MatrixController {
        
        return data;
    }
-    private void findPosition(){
-        for (int x = 0; x < getData().length; x++){
-            for (int y = 0; y < getData().length; y++){
-                if(this.data[x][y] == 'X'){
-                    this.positionX = x;
-                    this.positionY = y;
-                    break;
-                }
-            }
-        }
-    }
+
     private void processDados(String dados){
     	String data = dados.substring(3, dados.length());
     	String[] colunas = null;
-    	boolean ret;
+    	boolean ret = false;
     	int myPosition = 102938;
     	if(dados != null) {
     		colunas = data.split(",");
@@ -80,51 +69,73 @@ public class MatrixController {
     			ret = colunas[x].matches(this.id + "(.*)");
     			if(ret == true) {
     				myPosition = x;
-    			}else {
-    				System.out.printf("id nao encontrado");
+    			}else{
     			}
-    			
     		}
-    	this.positionX = this.getX(myPosition, colunas);
-    	this.positionY = this.getY(myPosition, colunas);
-    	
-    	System.out.printf("x é %d\n",this.positionX);
-    	System.out.printf("y é %d\n",this.positionX);
-    		System.exit(0);
+    	this.positions = colunas;
+    	this.positionX = this.getX(myPosition);
+    	this.positionY = this.getY(myPosition);
+    	this.getEnemiesPositions(myPosition);
     	}
     	 
     }
-    private Integer getX(int x, String[] data){
+    
+    private Integer getX(int x){
     	String[] aux;
     	if(x == 102938) {
     		this.nop = true;
     		return x;
     	}
-    	aux = data[x].split("-");
+    	aux = this.positions[x].split("-");
     	return Integer.parseInt(aux[1]);
     }
     
-    private Integer getY(int y, String[] data) {
+    private Integer getY(int y) {
     	String[] aux;
     	if(y == 102938) {
     		this.nop = true;
     		return y;
     	}
-    	aux = data[y].split("-");
-    	for(int x = 0; x < aux.length; x++) {
-    		System.out.println(aux[x]);
-    	}
+    	aux = this.positions[y].split("-");
     	return Integer.parseInt(aux[1]);
     }
+    
     private void clearCurrenPostion(){
        this.data[this.positionX][this.positionY] = ' ';
     }
-    private void drawMatrizLimit() {
+    private void drawMatriz() {
+    	int z = 0;
     	for (int x = 0; x < getData().length; x++) {
+    		z = x + 1;
     		for (int y = 0; y < getData().length; y++) {
     			if(x == 0 || x == 29 || y == 0 || y == 29) {
     				this.data[x][y] = '#';
     			}
+    			if((!this.nop) && x == this.positionX && y == this.positionY) {
+    				this.data[x][y] = 'X';
+    			}
+    			if(z < this.enimyPositions.size()) {
+    				if(this.enimyPositions.get(x) == x && this.enimyPositions.get(z) == y){
+        				this.data[x][y] = 'O';
+        			}
+    			}
+    			
+    		}
+    	}
+    	this.nop = false;
+    }
+    
+    private void getEnemiesPositions(int myPosition){
+    	String[] aux;
+    	int y = 0;
+    	for(int x = 0; x < this.positions.length; x++){
+    		if(myPosition == x) {
+    			this.positions[x] = null;
+    		}
+    		if(this.positions[x] != null) {
+    			aux = this.positions[x].split("-");
+    			this.enimyPositions.add(Integer.parseInt(aux[1]));
+    			this.enimyPositions.add(Integer.parseInt(aux[2]));
     		}
     	}
     }

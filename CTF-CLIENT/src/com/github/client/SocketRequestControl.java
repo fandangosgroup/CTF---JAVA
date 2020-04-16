@@ -22,6 +22,7 @@ public class SocketRequestControl {
 
      // thread para receber mensagens do servidor
 	    Recebedor r = new Recebedor(cliente.getInputStream());
+	    
         new Thread(r).start();
         
         char[][] data = new char[30][30];
@@ -39,22 +40,30 @@ public class SocketRequestControl {
 			
 			while(!GameOver) {
 				Thread.sleep(200);
-	            data = matrix.dataManipulation(input, r.data);
-				Client.CleanScreen();
-				print.setMatriz(data);
-				print.RenderPrintConsole(true);
 				saida.println("Me envie a matriz!");
-			}
+				if(r.data.equals("EUODEIOMINHAVIDA")){
+					saida.println("Me envie a matriz!");
 
-        saida.close();
-        cliente.close();
+				}else {
+					data = matrix.dataManipulation(input, r.data);
+					Client.CleanScreen();
+					print.setMatriz(data);
+					print.RenderPrintConsole(true);
+					
+				}
+
+
+			}
+			saida.close();
+	        cliente.close();
+
     }                
     
     public class Recebedor implements Runnable {
-        private String id = "";
+        public String id = "";
         private String inputController;
         private InputStream servidor;
-        private String data;
+        public String data = "";
 
         public Recebedor(InputStream servidor) {
             this.servidor = servidor;
@@ -67,9 +76,12 @@ public class SocketRequestControl {
             	this.inputController = s.nextLine();
             	if(this.inputController.substring(0, 7).equals("idUser:")) {
             		this.id = this.inputController.substring(7, 15);
+            		this.data = "EUODEIOMINHAVIDA";
             	}
-            	if(this.inputController.substring(0, 3).equals("M4X")) {
-            		data = inputController;
+            	else if(this.inputController.substring(0, 3).equals("M4X")) {
+            		this.data = inputController;
+            	}else {
+            		this.data = "EUODEIOMINHAVIDA";
             	}
                 System.out.println(s.nextLine());
             }
