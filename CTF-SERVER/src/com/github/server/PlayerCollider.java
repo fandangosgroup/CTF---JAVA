@@ -59,13 +59,19 @@ public class PlayerCollider {
     					if(team.get(i).equals("A")) {
     						System.out.print("CAPTUREI A BANDEIRA!!");
         					flag.setPlayer(id.get(i));
+        					System.out.println(flag.getID());
+        					System.exit(0);
         					flag.setX(Integer.parseInt(x.get(i)));
         					flag.setY(Integer.parseInt(y.get(i)));
     					}
     				}
-        			
+        			System.out.println(flag.getID());
         			if(flag.getID() != null) {
+        				System.out.println("Tem Player!");
         				if(id.get(i).equals(flag.getID())){
+        					System.out.println("achei Player!");
+        					System.out.println(x.get(i));
+        					System.out.println(y.get(i));
         					flag.setX(Integer.parseInt(x.get(i)));
         					flag.setY(Integer.parseInt(y.get(i)));
         				}
@@ -80,6 +86,7 @@ public class PlayerCollider {
         		matriz = matriz + "-" + team.get(i);
         		matriz = matriz + ",";
         		matriz = matriz + "FL4G" + "-" + flag.getX() + "-" + flag.getY();
+        		matriz = matriz + ",";
         	}
         	
     	}
