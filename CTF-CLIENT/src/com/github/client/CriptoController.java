@@ -6,7 +6,9 @@ public class CriptoController {
 	private int cesarNumber;
 	private String finalString;
 	
-	
+	public int getCesarNumber() {
+		return this.cesarNumber;
+	}
 	public void inputData(String s) {
 		this.data = s;
 	}
@@ -19,6 +21,9 @@ public class CriptoController {
 	}
 	public String getFinalString(){
 		return this.finalString;
+	}
+	public String getKey(){
+		return this.key;
 	}
 	
 	 private String cesarExecute(String texto, int chave){
@@ -47,4 +52,31 @@ public class CriptoController {
            
          return textoCifrado.toString();
 	} 
+	 
+	public String cesarDecript(String texto, int chave) {
+		
+		StringBuilder textoCifrado = new StringBuilder();
+        
+        int tamanhoTexto = texto.length();
+          
+         
+        for(int c=0; c < tamanhoTexto; c++){
+            
+           int letraCifradaASCII = ((int) texto.charAt(c)) - chave;
+             
+           if (texto.charAt(c) > 97 && texto.charAt(c) <  122 ) {
+               while (letraCifradaASCII > 122) {
+                   letraCifradaASCII = 97; }
+           }
+           if (texto.charAt(c) > 65 && texto.charAt(c) <  60 ) {
+               while (letraCifradaASCII > 90) {
+                   letraCifradaASCII = 65;
+                }
+           }
+
+       textoCifrado.append( (char)letraCifradaASCII );
+        }
+          
+        return textoCifrado.toString();
+	}
 }

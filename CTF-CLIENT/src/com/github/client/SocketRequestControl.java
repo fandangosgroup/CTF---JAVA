@@ -58,7 +58,9 @@ public class SocketRequestControl {
 					cpt.inputData(s.nextLine());
 					cpt.inputKey(s.nextLine());
 					cpt.cesar();
-					saida.println(cpt.getFinalString());
+					System.out.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
+					System.out.println(cpt.cesarDecript(cpt.getFinalString(), cpt.getCesarNumber()));
+					saida.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
 				}
 				
 			}
