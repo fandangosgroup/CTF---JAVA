@@ -19,48 +19,14 @@ public class MatrixController {
     
     public char[][] dataManipulation(InputController input, String dados, String id){
        this.id = id;
-       System.out.println("Recebendo essa String: " + dados);
-       System.out.println("ESSE é MEU ID: " + this.id);
        char moviment = input.getDir();
        String[] processedData = null;
        this.processDados(dados);
-       System.out.println(this.enimyPositions);
-       System.out.println("MINHA POSICAO É X:" + this.positionX);
-       System.out.println("MINHA POSICAO É Y:" + this.positionY);
+       this.movePlayer(moviment, input);
+      
+       
        this.drawMatriz();
        this.enimyPositions.clear();
-       
-       /*
-       switch(moviment){
-            //pra cima == -1 no x
-            case 'w':
-                this.clearCurrenPostion();
-                this.positionX = this.positionX - 1;
-                this.data[this.positionX][this.positionY] = 'X';
-               input.dirToZero();
-                break;
-            //pra baixo == +1 no x
-            case 's':
-                this.clearCurrenPostion();
-                this.positionX = this.positionX + 1;
-                this.data[this.positionX][this.positionY] = 'X';
-                input.dirToZero();
-                break;
-            //pra esquerda = y-1
-            case 'a':
-                this.clearCurrenPostion();
-                this.positionY = this.positionY - 1;
-                this.data[this.positionX][this.positionY] = 'X';
-                input.dirToZero();
-                break;
-            //pra direita = y + 1
-            case 'd':
-                this.clearCurrenPostion();
-                 this.positionY = this.positionY + 1;
-                this.data[this.positionX][this.positionY] = 'X';
-                input.dirToZero();
-                break;
-       }*/
        
        return data;
    }
@@ -140,11 +106,45 @@ public class MatrixController {
     		}
     	}
     }
-    
+    private void movePlayer(char moviment, InputController input){
+    	 switch(moviment){
+         //pra cima == -1 no x
+         case 'w':
+             this.clearCurrenPostion();
+             this.positionX = this.positionX - 1;
+             input.dirToZero();
+             break;
+         //pra baixo == +1 no x
+         case 's':
+             this.clearCurrenPostion();
+             this.positionX = this.positionX + 1;
+             input.dirToZero();
+             break;
+         //pra esquerda = y-1
+         case 'a':
+             this.clearCurrenPostion();
+             this.positionY = this.positionY - 1;
+             input.dirToZero();
+             break;
+         //pra direita = y + 1
+         case 'd':
+             this.clearCurrenPostion();
+             this.positionY = this.positionY + 1;
+             input.dirToZero();
+             break;
+    	 }
+    }
     public char[][] getData() {
         return data;
     }
     public void setData(char[][] data) {
         this.data = data;
     }
+    public Integer getPosX(){
+    	return this.positionX;
+    }
+    public Integer getPosY(){
+    	return this.positionY;
+    }
+    
 }

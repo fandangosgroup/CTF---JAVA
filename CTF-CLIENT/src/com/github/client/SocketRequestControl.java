@@ -19,7 +19,7 @@ public class SocketRequestControl {
 	public void executa() throws UnknownHostException, IOException, InterruptedException {
         Socket cliente = new Socket(this.host, this.porta);
         System.out.println("O cliente se conectou ao servidor!");
-
+        String request = "M4X";
      // thread para receber mensagens do servidor
 	    Recebedor r = new Recebedor(cliente.getInputStream());
 	    
@@ -49,10 +49,13 @@ public class SocketRequestControl {
 					Client.CleanScreen();
 					print.setMatriz(data);
 					print.RenderPrintConsole(true);
+					request += r.id;
+					request += "-" + matrix.getPosX().toString();
+					request += "-" + matrix.getPosY().toString();
+					saida.println(request);
 					saida.println("Me envie a matriz!");
 				}
-
-
+				
 			}
 			saida.close();
 	        cliente.close();
