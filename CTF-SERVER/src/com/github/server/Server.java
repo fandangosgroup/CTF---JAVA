@@ -14,6 +14,8 @@ public class Server {
     private List<Clientes> clientes;
     private List<Positions> positions;
     public int firstPlayer = 0;
+    public static List<Respawn>ladoa = new ArrayList<Respawn>();
+    public static List<Respawn>ladob = new ArrayList<Respawn>();
 	
 	public static void main(String[] args) throws IOException {
         // inicia o servidor
@@ -24,6 +26,29 @@ public class Server {
         this.porta = porta;
         this.clientes = new ArrayList<Clientes>();
         this.positions = new ArrayList<Positions>();
+        
+        ladoa.add(new Respawn(25,15, "A"));
+    	ladoa.add(new Respawn(25,20, "A"));
+    	ladoa.add(new Respawn(25,25, "A"));
+    	ladoa.add(new Respawn(27,10, "A"));
+    	ladoa.add(new Respawn(27,15, "A"));
+    	ladoa.add(new Respawn(23,15, "A"));
+    	ladoa.add(new Respawn(23,20, "A"));
+    	ladoa.add(new Respawn(23,25, "A"));
+    	ladoa.add(new Respawn(23,10, "A"));
+    	ladoa.add(new Respawn(23,15, "A"));
+    	
+    	
+    	ladob.add(new Respawn(5,15, "B"));
+    	ladob.add(new Respawn(5,20, "B"));
+    	ladob.add(new Respawn(5,25, "B"));
+    	ladob.add(new Respawn(7,10, "B"));
+    	ladob.add(new Respawn(7,20, "B"));
+    	ladob.add(new Respawn(2,15, "B"));
+    	ladob.add(new Respawn(2,20, "B"));
+    	ladob.add(new Respawn(2,25, "B"));
+    	ladob.add(new Respawn(2,10, "B"));
+    	ladob.add(new Respawn(2,20, "B"));
     }
     
     public void unsetCliente(int id) {
@@ -36,30 +61,6 @@ public class Server {
     }
     
     public Respawn respawn() {
-    	List<Respawn>ladoa = new ArrayList<Respawn>();
-    	ladoa.add(new Respawn(25,15, "A"));
-    	ladoa.add(new Respawn(25,20, "A"));
-    	ladoa.add(new Respawn(25,25, "A"));
-    	ladoa.add(new Respawn(27,10, "A"));
-    	ladoa.add(new Respawn(27,15, "A"));
-    	ladoa.add(new Respawn(23,15, "A"));
-    	ladoa.add(new Respawn(23,20, "A"));
-    	ladoa.add(new Respawn(23,25, "A"));
-    	ladoa.add(new Respawn(23,10, "A"));
-    	ladoa.add(new Respawn(23,15, "A"));
-    	
-    	List<Respawn>ladob = new ArrayList<Respawn>();
-    	ladob.add(new Respawn(5,15, "B"));
-    	ladob.add(new Respawn(5,20, "B"));
-    	ladob.add(new Respawn(5,25, "B"));
-    	ladob.add(new Respawn(7,10, "B"));
-    	ladob.add(new Respawn(7,20, "B"));
-    	ladob.add(new Respawn(2,15, "B"));
-    	ladob.add(new Respawn(2,20, "B"));
-    	ladob.add(new Respawn(2,25, "B"));
-    	ladob.add(new Respawn(2,10, "B"));
-    	ladob.add(new Respawn(2,20, "B"));
-    	
     	if(this.firstPlayer == 0) {
     		this.firstPlayer = 1;
     		Respawn aux2 = ladob.get(new Random().nextInt(9));
@@ -69,8 +70,6 @@ public class Server {
     	this.firstPlayer = 0;
     	Respawn aux2 = ladoa.get(new Random().nextInt(9));
     	return aux2;
-    	
-    	
     }
     
     public void unsetPos(int id) {

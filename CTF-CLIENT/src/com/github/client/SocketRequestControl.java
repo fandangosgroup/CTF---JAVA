@@ -39,7 +39,7 @@ public class SocketRequestControl {
 			
 			while(!GameOver) {
 				String request = "M4X";
-				Thread.sleep(200);
+				Thread.sleep(20);
 				saida.println("Me envie a matriz!");
 				if(r.select == 0 || r.select == 1){
 					saida.println("Me envie a matriz!");
