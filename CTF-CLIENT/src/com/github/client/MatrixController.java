@@ -6,6 +6,7 @@ public class MatrixController {
     private char[][] data = new char[30][30];
     private String[] positions = null;
     private ArrayList<Integer> enimyPositions = new ArrayList<Integer>();
+    private ArrayList<Integer> teamPositions = new ArrayList<Integer>();
     private String id;
     private Integer positionX;
     private Integer positionY;
@@ -49,6 +50,7 @@ public class MatrixController {
     	this.positionX = this.getX(myPosition);
     	this.positionY = this.getY(myPosition);
     	this.getEnemiesPositions(myPosition);
+    	this.getTeamPositions(myPosition);
     	}
     	 
     }
@@ -91,6 +93,9 @@ public class MatrixController {
 		for(int x = this.enimyPositions.size() - 1; x > 0; x--) {
 			this.data[this.enimyPositions.get(x--)][this.enimyPositions.get(x)] = 'O';
 		}
+		for(int x = this.teamPositions.size() - 1; x > 0; x--) {
+			this.data[this.teamPositions.get(x--)][this.teamPositions.get(x)] = 'Y';
+		}
     	this.nop = false;
     }
     
@@ -103,8 +108,23 @@ public class MatrixController {
     		}
     		if(this.positions[x] != null) {
     			aux = this.positions[x].split("-");
-    			this.enimyPositions.add(Integer.parseInt(aux[2]));
-    			this.enimyPositions.add(Integer.parseInt(aux[1]));
+    			if(aux[3] != "A") {
+    				this.enimyPositions.add(Integer.parseInt(aux[2]));
+        			this.enimyPositions.add(Integer.parseInt(aux[1]));
+    			}
+    		}
+    	}
+    }
+    private void getTeamPositions(int myPosition) {
+    	String[] aux;
+    	int y = 0;
+    	for(int x = 0; x < this.positions.length; x++){
+    		if(this.positions[x] != null) {
+    			aux = this.positions[x].split("-");
+    			if(aux[3] != "B") {
+    				this.teamPositions.add(Integer.parseInt(aux[2]));
+        			this.teamPositions.add(Integer.parseInt(aux[1]));
+    			}
     		}
     	}
     }
