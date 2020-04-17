@@ -23,7 +23,8 @@ public class MatrixController {
        String[] processedData = null;
        this.processDados(dados);
        this.movePlayer(moviment, input);
-      
+       System.out.println("meu x é: " + this.positionX.toString());
+       System.out.println("meu y é: " + this.positionY.toString());
        
        this.drawMatriz();
        this.enimyPositions.clear();

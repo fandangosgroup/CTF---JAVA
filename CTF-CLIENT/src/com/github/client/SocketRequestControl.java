@@ -19,7 +19,6 @@ public class SocketRequestControl {
 	public void executa() throws UnknownHostException, IOException, InterruptedException {
         Socket cliente = new Socket(this.host, this.porta);
         System.out.println("O cliente se conectou ao servidor!");
-        String request = "M4X";
      // thread para receber mensagens do servidor
 	    Recebedor r = new Recebedor(cliente.getInputStream());
 	    
@@ -39,6 +38,7 @@ public class SocketRequestControl {
  	       	boolean GameOver = false;
 			
 			while(!GameOver) {
+				String request = "M4X";
 				Thread.sleep(200);
 				saida.println("Me envie a matriz!");
 				if(r.select == 0 || r.select == 1){
@@ -52,14 +52,15 @@ public class SocketRequestControl {
 					request += r.id;
 					request += "-" + matrix.getPosX().toString();
 					request += "-" + matrix.getPosY().toString();
+					System.out.println(request);
 					saida.println(request);
+					
 					saida.println("Me envie a matriz!");
 				}
 				
 			}
 			saida.close();
 	        cliente.close();
-
     }                
     
 	
