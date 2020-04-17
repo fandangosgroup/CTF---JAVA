@@ -60,11 +60,13 @@ public class SocketRequestControl {
 					cpt.inputData(s.nextLine());
 					System.out.println("DIGITE A CHAVE PARA ENCRIPTAR!");
 					cpt.inputKey(s.nextLine());
-					//s.close();
-					saida.println("VTNC");
+					s.close();
 					cpt.cesar();
-					System.out.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
 					saida.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
+				}
+				if(r.select == 4) {
+					System.out.println("a frase é:" + r.text + "a key é: " + r.key);
+					GameOver = true;
 				}
 				
 			}
@@ -81,6 +83,8 @@ public class SocketRequestControl {
         private InputStream servidor;
         public String data = "";
         public int select = 0;
+        public String text;
+        public String key;
         public Recebedor(InputStream servidor) {
             this.servidor = servidor;
         }
@@ -108,6 +112,12 @@ public class SocketRequestControl {
         	}
         	if(this.inputController.equals("PrimeiroPlayer")) {
         		this.select = 3;
+        	}
+        	if(this.inputController.substring(0, 7).equals("GameOver")){
+        		String[] aux = this.inputController.split("-");
+        		this.text = aux[1];
+        		this.key = aux[2];
+        		this.select = 4;
         	}
         
         }
