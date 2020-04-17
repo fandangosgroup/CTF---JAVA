@@ -36,56 +36,40 @@ public class Server {
     }
     
     public Respawn respawn() {
-    	Respawn aux = new Respawn();
     	List<Respawn>ladoa = new ArrayList<Respawn>();
-    	aux.setLado("a");
-    	aux.setX(25);
-    	aux.setY(15);
-    	ladoa.add(aux);
-    	aux.setLado("a");
-    	aux.setX(25);
-    	aux.setY(20);
-    	ladoa.add(aux);
-    	aux.setLado("a");
-    	aux.setX(25);
-    	aux.setY(25);
-    	ladoa.add(aux);
-    	aux.setLado("a");
-    	aux.setX(27);
-    	aux.setY(10);
-    	ladoa.add(aux);
-    	aux.setLado("a");
-    	aux.setX(27);
-    	aux.setY(15);
-    	ladoa.add(aux);
+    	ladoa.add(new Respawn(25,15));
+    	ladoa.add(new Respawn(25,20));
+    	ladoa.add(new Respawn(25,25));
+    	ladoa.add(new Respawn(27,10));
+    	ladoa.add(new Respawn(27,15));
     	
     	List<Respawn>ladob = new ArrayList<Respawn>();
-    	aux.setX(5);
-    	aux.setY(15);
-    	ladob.add(aux);
-    	aux.setX(5);
-    	aux.setY(20);
-    	ladob.add(aux);
-    	aux.setX(5);
-    	aux.setY(25);
-    	ladob.add(aux);
-    	aux.setX(7);
-    	aux.setY(10);
-    	ladob.add(aux);
-    	aux.setX(7);
-    	aux.setY(20);
-    	ladob.add(aux);
+    	ladob.add(new Respawn(5,15));
+    	ladob.add(new Respawn(5,20));
+    	ladob.add(new Respawn(5,25));
+    	ladob.add(new Respawn(7,10));
+    	ladob.add(new Respawn(7,20));
+    	
+    	
+    	for(Respawn rr : ladob) {
+    		System.out.println(rr.getX());
+    		System.out.println(rr.getY());
+    	}
+    	
     	
     	if(this.firstPlayer == 0) {
     		this.firstPlayer = 1;
     		Respawn aux2 = ladob.get(new Random().nextInt(4));
-    		System.out.println("MASTERAUX: "+aux2.getY());
-    		return aux2;
-    	}else {
-    		Respawn aux2 = ladoa.get(new Random().nextInt(4));
-    		System.out.println("MASTERAUXbb: "+aux2.getX());
+    		System.out.println("MASTERAUXaa: "+aux2.getX());
+    		System.out.println("MASTERAUXaa: "+aux2.getY());
     		return aux2;
     	}
+    	
+    	Respawn aux2 = ladoa.get(new Random().nextInt(4));
+    	System.out.println("MASTERAUXbb: "+aux2.getX());
+    	System.out.println("MASTERAUXbb: "+aux2.getY());
+    	return aux2;
+    	
     	
     }
     
