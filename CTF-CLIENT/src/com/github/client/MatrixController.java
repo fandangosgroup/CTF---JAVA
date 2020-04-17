@@ -11,6 +11,7 @@ public class MatrixController {
     private Integer positionX;
     private Integer positionY;
     private boolean nop;
+    private String myTeam;
     
     
     public MatrixController(char[][] d){
@@ -26,6 +27,7 @@ public class MatrixController {
        this.movePlayer(moviment, input);
        System.out.println("meu x é: " + this.positionX.toString());
        System.out.println("meu y é: " + this.positionY.toString());
+       System.out.println("meu time é: " + this.myTeam);
        
        this.drawMatriz();
        this.enimyPositions.clear();
@@ -49,10 +51,17 @@ public class MatrixController {
     	this.positions = colunas;
     	this.positionX = this.getX(myPosition);
     	this.positionY = this.getY(myPosition);
+    	this.myTeam = this.getTeam(myPosition);
     	this.getEnemiesPositions(myPosition);
     	this.getTeamPositions(myPosition);
     	}
     	 
+    }
+    
+    private String getTeam(int x) {
+    	String[] aux;
+    	aux = this.positions[x].split("-");
+    	return aux[3];
     }
     
     private Integer getX(int x){
@@ -108,7 +117,7 @@ public class MatrixController {
     		}
     		if(this.positions[x] != null) {
     			aux = this.positions[x].split("-");
-    			if(aux[3] != "A") {
+    			if(!(aux[3].equals(this.myTeam))){
     				this.enimyPositions.add(Integer.parseInt(aux[2]));
         			this.enimyPositions.add(Integer.parseInt(aux[1]));
     			}
@@ -121,7 +130,7 @@ public class MatrixController {
     	for(int x = 0; x < this.positions.length; x++){
     		if(this.positions[x] != null) {
     			aux = this.positions[x].split("-");
-    			if(aux[3] != "B") {
+    			if(aux[3].equals(this.myTeam)) {
     				this.teamPositions.add(Integer.parseInt(aux[2]));
         			this.teamPositions.add(Integer.parseInt(aux[1]));
     			}
