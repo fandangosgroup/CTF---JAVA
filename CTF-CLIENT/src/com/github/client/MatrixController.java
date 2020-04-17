@@ -119,11 +119,6 @@ public class MatrixController {
     			if((!this.nop) && x == this.positionX && y == this.positionY) {
     				this.data[x][y] = 'X';
     			}
-    			if(this.isFlagPresent == true) {
-    				if(x == this.flagPositionX && y == this.flagPositionY) {
-        				this.data[x][y] = '@';
-    				}
-    			}
     		}
     	}
     	for(int x = this.teamPositions.size() - 1; x > 0; x--) {
@@ -132,6 +127,16 @@ public class MatrixController {
 		for(int x = this.enimyPositions.size() - 1; x > 0; x--) {
 			this.data[this.enimyPositions.get(x--)][this.enimyPositions.get(x)] = 'O';
 		}
+		for (int x = 0; x < getData().length; x++) {
+    		for (int y = 0; y < getData().length; y++) {
+    			if(this.isFlagPresent == true) {
+    				if(x == this.flagPositionX && y == this.flagPositionY) {
+        				this.data[x][y] = '@';
+    				}
+    			}
+    		}
+		}
+		
     	this.nop = false;
     }
     
