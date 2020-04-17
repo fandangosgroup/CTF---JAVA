@@ -144,12 +144,13 @@ public class Server {
     	String[] loc = null;
     	loc = msg.split("-");
     	System.out.println("DEBUG: "+msg);
+    	
     	for (Positions Pos : this.positions) {//12 10 20
     		if(msg.substring(0, 3).equals("M4X")) {
     			System.out.print("A Mensagem chegou !!!!!");
         		if(Pos.getPosID() == id) {
-        			Pos.setPosX(Integer.parseInt(loc[2]));
-        			Pos.setPosY(Integer.parseInt(loc[1]));
+        			Pos.setPosX(Integer.parseInt(loc[1]));
+        			Pos.setPosY(Integer.parseInt(loc[2]));
         		}
         	}
     		
