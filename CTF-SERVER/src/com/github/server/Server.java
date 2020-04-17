@@ -131,42 +131,42 @@ public class Server {
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
     	System.out.println(msg);
-    	if(this.savekey == false) {
-    		while(!this.savekey) {
-    			//System.out.println("Esperando Chave !");
-//    			for (Clientes cliente : this.clientes) {
-//    				cliente.getCliente().println("Esperando Chave...");
-//    	        }
-    			if(msg.substring(0,3).equals("K3Y")) {
-    				System.out.println("Chave Recebida!!");
-    				this.savekey = true;
-    				
-    				String[] hash = msg.split("-");
-    				
-    				System.out.println(hash[1]);
-    				System.out.println(hash[2]);
-    				System.exit(0);
-    				Database db = new Database();
-    	    		
-    	    		Connection teste = db.getConnection();
-    	    		try {
-    					Statement st = teste.createStatement();
-    					//st.execute("SELECT * FROM USUARIOS");
-    					st.execute("USE heroku_b481894670aeac7");
-    					ResultSet resul = st.executeQuery("INSERT INTO CRIPTO keyy,hash VALUES("+hash[1]+","+hash[2]+")");
-    					
-    					//resul.next();
-    					//System.out.println("chegouAQUI");
-    					//String tete = resul.getString("Nome");
-    					//System.out.print(tete);
-    					System.exit(0);
-    				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
-    					e.printStackTrace();
-    				}
-    			}
-    		}
-    	}
+//    	if(this.savekey == false) {
+//    		while(!this.savekey) {
+//    			//System.out.println("Esperando Chave !");
+////    			for (Clientes cliente : this.clientes) {
+////    				cliente.getCliente().println("Esperando Chave...");
+////    	        }
+//    			if(msg.substring(0,3).equals("K3Y")) {
+//    				System.out.println("Chave Recebida!!");
+//    				this.savekey = true;
+//    				
+//    				String[] hash = msg.split("-");
+//    				
+//    				System.out.println(hash[1]);
+//    				System.out.println(hash[2]);
+//    				System.exit(0);
+//    				Database db = new Database();
+//    	    		
+//    	    		Connection teste = db.getConnection();
+//    	    		try {
+//    					Statement st = teste.createStatement();
+//    					//st.execute("SELECT * FROM USUARIOS");
+//    					st.execute("USE heroku_b481894670aeac7");
+//    					ResultSet resul = st.executeQuery("INSERT INTO CRIPTO keyy,hash VALUES("+hash[1]+","+hash[2]+")");
+//    					
+//    					//resul.next();
+//    					//System.out.println("chegouAQUI");
+//    					//String tete = resul.getString("Nome");
+//    					//System.out.print(tete);
+//    					System.exit(0);
+//    				} catch (SQLException e) {
+//    					// TODO Auto-generated catch block
+//    					e.printStackTrace();
+//    				}
+//    			}
+//    		}
+//    	}
     	String location = "M4X";
     	int aux;
     	String[] loc = null;
