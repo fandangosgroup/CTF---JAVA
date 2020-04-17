@@ -11,6 +11,7 @@ public class SocketRequestControl {
   
     private String host;
     private int porta;
+    public boolean isKey = false;
     public SocketRequestControl (String host, int porta) {
         this.host = host;
         this.porta = porta;
@@ -52,7 +53,7 @@ public class SocketRequestControl {
 					saida.println(request);
 					saida.println("Me envie a matriz!");
 				}
-				if(r.select == 3) {
+				if(r.select == 3 && this.isKey == false) {
 					Scanner s = new Scanner(System.in);
 					System.out.println("CAPTURE DE FLAG by BRUNO SAMPAIO, FABRICIO GALUDO, HOBITO e MESTRE CABELO");
 					System.out.println("DIGITE A FRASE QUE DESEJA ESCONDER");
@@ -60,11 +61,13 @@ public class SocketRequestControl {
 					cpt.inputData(s.nextLine());
 					System.out.println("DIGITE A CHAVE PARA ENCRIPTAR!");
 					cpt.inputKey(s.nextLine());
-					//s.close();
+					s.close();
 					saida.println("VTNC");
 					cpt.cesar();
 					System.out.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
 					saida.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
+					this.isKey = true;
+					System.out.print("Salvando.....");
 				}
 				
 			}
