@@ -1,7 +1,6 @@
 package com.github.server;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,6 +13,8 @@ public class Server {
     private List<Clientes> clientes;
     private List<Positions> positions;
     public int firstPlayer = 0;
+    public int first = 0;
+    public boolean savekey = false;
     public static List<Respawn>ladoa = new ArrayList<Respawn>();
     public static List<Respawn>ladob = new ArrayList<Respawn>();
     public PlayerCollider collider = new PlayerCollider();
@@ -104,7 +105,11 @@ public class Server {
             int aux = Integer.parseInt(id1);
 
             // cria tratador de cliente numa nova thread
-            ps.println("idUser:"+aux);
+            ps.println("idUser:"+aux); //manda o id do cliente ao conectar
+            if(this.first == 0) {
+            	this.first = 1;
+            	ps.println("PrimeiroPlayer");
+            }
             TrataCliente tc = new TrataCliente(ps, cliente.getInputStream(), aux, this);
             
             Clientes cl = tc.getCliente();
@@ -121,6 +126,14 @@ public class Server {
 
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
+    	if(this.savekey == false) {
+    		while(!this.savekey) {
+    			System.out.println("Esperando Chave !");
+//    			for (Clientes cliente : this.clientes) {
+//    				cliente.getCliente().println("Esperando Chave...");
+//    	        }
+    		}
+    	}
     	String location = "M4X";
     	int aux;
     	String[] loc = null;

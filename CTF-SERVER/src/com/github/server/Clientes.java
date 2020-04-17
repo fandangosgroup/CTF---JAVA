@@ -2,7 +2,6 @@ package com.github.server;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.net.Socket;
 
 public class Clientes {
 	private int id;
