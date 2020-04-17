@@ -37,26 +37,37 @@ public class Server {
     
     public Respawn respawn() {
     	List<Respawn>ladoa = new ArrayList<Respawn>();
-    	ladoa.add(new Respawn(25,15));
-    	ladoa.add(new Respawn(25,20));
-    	ladoa.add(new Respawn(25,25));
-    	ladoa.add(new Respawn(27,10));
-    	ladoa.add(new Respawn(27,15));
+    	ladoa.add(new Respawn(25,15, "A"));
+    	ladoa.add(new Respawn(25,20, "A"));
+    	ladoa.add(new Respawn(25,25, "A"));
+    	ladoa.add(new Respawn(27,10, "A"));
+    	ladoa.add(new Respawn(27,15, "A"));
+    	ladoa.add(new Respawn(23,15, "A"));
+    	ladoa.add(new Respawn(23,20, "A"));
+    	ladoa.add(new Respawn(23,25, "A"));
+    	ladoa.add(new Respawn(23,10, "A"));
+    	ladoa.add(new Respawn(23,15, "A"));
     	
     	List<Respawn>ladob = new ArrayList<Respawn>();
-    	ladob.add(new Respawn(5,15));
-    	ladob.add(new Respawn(5,20));
-    	ladob.add(new Respawn(5,25));
-    	ladob.add(new Respawn(7,10));
-    	ladob.add(new Respawn(7,20));
+    	ladob.add(new Respawn(5,15, "B"));
+    	ladob.add(new Respawn(5,20, "B"));
+    	ladob.add(new Respawn(5,25, "B"));
+    	ladob.add(new Respawn(7,10, "B"));
+    	ladob.add(new Respawn(7,20, "B"));
+    	ladob.add(new Respawn(2,15, "B"));
+    	ladob.add(new Respawn(2,20, "B"));
+    	ladob.add(new Respawn(2,25, "B"));
+    	ladob.add(new Respawn(2,10, "B"));
+    	ladob.add(new Respawn(2,20, "B"));
     	
     	if(this.firstPlayer == 0) {
     		this.firstPlayer = 1;
-    		Respawn aux2 = ladob.get(new Random().nextInt(4));
+    		Respawn aux2 = ladob.get(new Random().nextInt(9));
     		return aux2;
     	}
     	
-    	Respawn aux2 = ladoa.get(new Random().nextInt(4));
+    	this.firstPlayer = 0;
+    	Respawn aux2 = ladoa.get(new Random().nextInt(9));
     	return aux2;
     	
     	
@@ -117,7 +128,7 @@ public class Server {
     	for (Positions Pos : this.positions) {//12 10 20
     		if(msg.substring(0, 3).equals("M4X")) {
     			loc = msg.split("-");
-    			System.out.print(id+" Player Updated");
+    			System.out.println(id+" Player Updated");
         		if(Pos.getPosID() == id) {
         			Pos.setPosX(Integer.parseInt(loc[1]));
         			Pos.setPosY(Integer.parseInt(loc[2]));
@@ -134,6 +145,9 @@ public class Server {
     		
     		aux = Pos.getPosY();
     		location = location + Integer.toString(aux);
+    		location = location + '-';
+    		
+    		location = location + Pos.getTeam();
     		location = location + ',';
     	}
     	

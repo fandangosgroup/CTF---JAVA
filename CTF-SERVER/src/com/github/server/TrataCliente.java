@@ -27,12 +27,14 @@ public class TrataCliente implements Runnable {
     
     public Positions getPos() {
     	int x = 1,y = 1;
+    	String team = "";
     	Respawn resp = servidor.respawn();
     	x = resp.getX();
     	y = resp.getY();
+    	team = resp.getLado();
     	System.out.print(x);
     	System.out.print(y);
-        Positions pos = new Positions(this.id, x, y);
+        Positions pos = new Positions(this.id, x, y, team);
         return pos;
     }
 

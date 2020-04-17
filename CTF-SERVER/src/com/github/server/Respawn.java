@@ -5,9 +5,10 @@ public class Respawn {
 	private int x;
 	private int y;
 	
-	public Respawn(int x, int y) {
+	public Respawn(int x, int y, String lado) {
 		this.x = x;
 		this.y = y;
+		this.lado = lado;
 	}
 	
 	public int getX() {

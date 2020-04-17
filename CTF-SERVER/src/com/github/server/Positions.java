@@ -4,11 +4,13 @@ public class Positions {
 	private int id;
 	private int x;
 	private int y;
+	private String team;
 	
-	public Positions(int id, int x, int y){
+	public Positions(int id, int x, int y, String team){
 		this.id = id;
 		this.x = x;
 		this.y = y;
+		this.team = team;
 	}
 	
 	public int getPosX() {
@@ -21,6 +23,10 @@ public class Positions {
 	
 	public int getPosID() {
 		return this.id;
+	}
+	
+	public String getTeam() {
+		return this.team;
 	}
 	
 	public void setPosX(int x) {
