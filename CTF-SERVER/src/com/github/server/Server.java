@@ -78,10 +78,10 @@ public class Server {
     	
     	if(this.firstPlayer == 0) {
     		this.firstPlayer = 1;
-    		aux = ladob.get(3);
+    		aux = ladob.get(new Random().nextInt(4));
     		return aux;
     	}else {
-    		aux = ladoa.get(2);
+    		aux = ladoa.get(new Random().nextInt(4));
     		return aux;
     	}
     	
@@ -143,9 +143,10 @@ public class Server {
     	int aux;
     	String[] loc = null;
     	loc = msg.split("-");
-    	
+    	System.out.println("DEBUG: "+msg);
     	for (Positions Pos : this.positions) {//12 10 20
-    		if(msg.substring(0, 3) == "M4X") {
+    		if(msg.substring(0, 3).equals("M4X")) {
+    			System.out.print("A Mensagem chegou !!!!!");
         		if(Pos.getPosID() == id) {
         			Pos.setPosX(Integer.parseInt(loc[2]));
         			Pos.setPosY(Integer.parseInt(loc[1]));
