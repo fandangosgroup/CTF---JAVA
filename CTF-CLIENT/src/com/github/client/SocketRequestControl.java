@@ -52,9 +52,7 @@ public class SocketRequestControl {
 					request += r.id;
 					request += "-" + matrix.getPosX().toString();
 					request += "-" + matrix.getPosY().toString();
-					System.out.println(request);
 					saida.println(request);
-					
 					saida.println("Me envie a matriz!");
 				}
 				
