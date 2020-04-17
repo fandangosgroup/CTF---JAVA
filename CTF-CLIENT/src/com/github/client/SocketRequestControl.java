@@ -52,12 +52,20 @@ public class SocketRequestControl {
 					saida.println(request);
 					saida.println("Me envie a matriz!");
 				}
+				if(r.select == 3) {
+					Scanner s = new Scanner(System.in);
+					CriptoController cpt = new CriptoController();
+					cpt.inputData(s.nextLine());
+					cpt.inputKey(s.nextLine());
+					cpt.cesar();
+					saida.println(cpt.getFinalString());
+				}
 				
 			}
 			saida.close();
 	        cliente.close();
     }                
-    
+     
 	
 	//CLASSE DIFERENTE
     public class Recebedor implements Runnable {
@@ -91,6 +99,9 @@ public class SocketRequestControl {
         	if(this.inputController.substring(0, 3).equals("M4X")){
         		this.data = inputController;
         		this.select = 2;
+        	}
+        	if(this.inputController.equals("PrimeiroPlayer")) {
+        		this.select = 3;
         	}
         
         }

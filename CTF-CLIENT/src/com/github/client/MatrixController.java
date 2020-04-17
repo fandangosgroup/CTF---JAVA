@@ -23,7 +23,6 @@ public class MatrixController {
     public char[][] dataManipulation(InputController input, String dados, String id){
         this.id = id;
         char moviment = input.getDir();
-        String[] processedData = null;
         this.processDados(dados);
         this.movePlayer(moviment, input);
        // System.out.println(dados);
@@ -142,7 +141,6 @@ public class MatrixController {
     
     private void getOthersPositions(int myPosition){
     	String[] aux;
-    	int y = 0;
     	for(int x = 0; x < this.positions.length; x++){
     		if(myPosition == x) {
     			this.positions[x] = null;
