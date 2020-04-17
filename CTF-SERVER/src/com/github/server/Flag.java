@@ -5,8 +5,8 @@ public class Flag {
 	private int x;
 	private int y;
 	
-	public Flag(String id, int x, int y) {
-		this.idplayer = id;
+	public Flag(int x, int y) {
+		//this.idplayer = id;
 		this.x = x;
 		this.y = y;
 	}

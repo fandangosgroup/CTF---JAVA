@@ -16,6 +16,7 @@ public class Server {
     public int firstPlayer = 0;
     public static List<Respawn>ladoa = new ArrayList<Respawn>();
     public static List<Respawn>ladob = new ArrayList<Respawn>();
+    public PlayerCollider collider = new PlayerCollider();
 	
 	public static void main(String[] args) throws IOException {
         // inicia o servidor
@@ -120,7 +121,6 @@ public class Server {
 
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
-    	PlayerCollider collider = new PlayerCollider();
     	String location = "M4X";
     	int aux;
     	String[] loc = null;
