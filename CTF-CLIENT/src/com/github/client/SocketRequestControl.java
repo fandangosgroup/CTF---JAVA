@@ -54,12 +54,13 @@ public class SocketRequestControl {
 				}
 				if(r.select == 3) {
 					Scanner s = new Scanner(System.in);
+					System.out.println("CAPTURE DE FLAG by BRUNO SAMPAIO, FABRICIO GALUDO, HOBITO e MESTRE CABELO");
+					System.out.println("DIGITE A FRASE QUE DESEJA ESCONDER");
 					CriptoController cpt = new CriptoController();
 					cpt.inputData(s.nextLine());
+					System.out.println("DIGITE A CHAVE PARA ENCRIPTAR!");
 					cpt.inputKey(s.nextLine());
 					cpt.cesar();
-					System.out.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
-					System.out.println(cpt.cesarDecript(cpt.getFinalString(), cpt.getCesarNumber()));
 					saida.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
 				}
 				
