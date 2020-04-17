@@ -135,8 +135,8 @@ public class MatrixController {
     		}
     		if(this.positions[x] != null) {
     			aux = this.positions[x].split("-");
-    			this.enimyPositions.add(Integer.parseInt(aux[1]));
     			this.enimyPositions.add(Integer.parseInt(aux[2]));
+    			this.enimyPositions.add(Integer.parseInt(aux[1]));
     		}
     	}
     }
