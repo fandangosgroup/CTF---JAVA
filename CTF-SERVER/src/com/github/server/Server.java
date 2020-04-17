@@ -121,6 +121,7 @@ public class Server {
 
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
+    	PlayerCollider collider = new PlayerCollider();
     	String location = "M4X";
     	int aux;
     	String[] loc = null;
@@ -150,6 +151,8 @@ public class Server {
     		location = location + Pos.getTeam();
     		location = location + ',';
     	}
+    	
+    	location = collider.processa(location);
     	
         for (Clientes cliente : this.clientes) {
         	System.out.println("Cl:"+cliente.getID());
