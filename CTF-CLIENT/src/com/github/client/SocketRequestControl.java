@@ -53,15 +53,18 @@ public class SocketRequestControl {
 					saida.println("Me envie a matriz!");
 				}
 				if(r.select == 3) {
-					Scanner s = new Scanner(System.in);
-					System.out.println("CAPTURE DE FLAG by BRUNO SAMPAIO, FABRICIO GALUDO, HOBITO e MESTRE CABELO");
-					System.out.println("DIGITE A FRASE QUE DESEJA ESCONDER");
+					//Scanner s = new Scanner(System.in);
+					//System.out.println("CAPTURE DE FLAG by BRUNO SAMPAIO, FABRICIO GALUDO, HOBITO e MESTRE CABELO");
+					//System.out.println("DIGITE A FRASE QUE DESEJA ESCONDER");
 					CriptoController cpt = new CriptoController();
-					cpt.inputData(s.nextLine());
-					System.out.println("DIGITE A CHAVE PARA ENCRIPTAR!");
-					cpt.inputKey(s.nextLine());
+					//cpt.inputData(s.nextLine());
+					//System.out.println("DIGITE A CHAVE PARA ENCRIPTAR!");
+					//cpt.inputKey(s.nextLine());
+					//s.close();
+					saida.println("VTNC");
 					cpt.cesar();
-					saida.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
+					System.out.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
+					//saida.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
 				}
 				
 			}
