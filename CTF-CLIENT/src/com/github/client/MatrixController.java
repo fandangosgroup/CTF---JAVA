@@ -12,14 +12,15 @@ public class MatrixController {
     private boolean nop;
     
     
-    public MatrixController(String id, char[][] d){
+    public MatrixController(char[][] d){
     	this.nop = false;
-    	this.id = id;
         setData(d);
     }
     
-    public char[][] dataManipulation(InputController input, String dados){
+    public char[][] dataManipulation(InputController input, String dados, String id){
+       this.id = id;
        System.out.println("Recebendo essa String: " + dados);
+       System.out.println("ESSE é MEU ID: " + this.id);
        char moviment = input.getDir();
        String[] processedData = null;
        this.processDados(dados);
@@ -75,7 +76,6 @@ public class MatrixController {
     			ret = colunas[x].matches(this.id + "(.*)");
     			if(ret == true) {
     				myPosition = x;
-    			}else{
     			}
     		}
     	this.positions = colunas;
@@ -118,7 +118,6 @@ public class MatrixController {
     			if((!this.nop) && x == this.positionX && y == this.positionY) {
     				this.data[x][y] = 'X';
     			}
-    			
     		}
     	}
 		for(int x = this.enimyPositions.size() - 1; x > 0; x--) {

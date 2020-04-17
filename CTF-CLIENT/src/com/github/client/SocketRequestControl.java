@@ -27,7 +27,7 @@ public class SocketRequestControl {
         
         char[][] data = new char[30][30];
 	    InputController input = new InputController();
-	    MatrixController matrix = new MatrixController(r.id, data);
+	    MatrixController matrix = new MatrixController(data);
 	    PrintConsole print = new PrintConsole();
 	    
         // lê msgs do teclado e manda pro servidor
@@ -45,7 +45,7 @@ public class SocketRequestControl {
 					saida.println("Me envie a matriz!");
 				}
 				if(r.select == 2){
-					data = matrix.dataManipulation(input, r.data);
+					data = matrix.dataManipulation(input, r.data, r.id);
 					Client.CleanScreen();
 					print.setMatriz(data);
 					print.RenderPrintConsole(true);
@@ -63,6 +63,7 @@ public class SocketRequestControl {
 	//CLASSE DIFERENTE
     public class Recebedor implements Runnable {
         public String id = "";
+        private Boolean isIded = false;
         private String inputController;
         private InputStream servidor;
         public String data = "";
@@ -76,7 +77,6 @@ public class SocketRequestControl {
             // recebe msgs do servidor e imprime na tela
             Scanner s = new Scanner(this.servidor);
             while (s.hasNextLine()) {
-            	System.out.println(s.nextLine());
             	this.inputController = s.nextLine();
             	this.inputSelect(); 
             }
@@ -84,8 +84,9 @@ public class SocketRequestControl {
         
         
         private void inputSelect(){
-        	if(this.inputController.substring(0, 7).equals("idUser:")){
+        	if(this.inputController.substring(0, 7).equals("idUser:") && this.isIded.equals(false)){
         		this.id = this.inputController.substring(7, 15);
+        		this.isIded = true;
         		this.select = 1;
         	}
         	if(this.inputController.substring(0, 3).equals("M4X")){
