@@ -40,12 +40,31 @@ public class PlayerCollider {
         			//System.out.println(y.get(i) +"--"+ y.get(z));
         			//System.out.println(team.get(i) +"--"+ team.get(z));
         			
+        			if(x.get(i).equals(Integer.toString(this.flag.getX())) && y.get(i).equals(Integer.toString(this.flag.getY()))) {
+    					if(team.get(i).equals("A")) {
+        					this.flag.setPlayer(id.get(i));
+        					this.flag.setX(Integer.parseInt(x.get(i)));
+        					this.flag.setY(Integer.parseInt(y.get(i)));
+    					}
+    				}
+        			
         			if((!id.get(i).equals(id.get(z))) && (x.get(i).equals(x.get(z))) && (y.get(i).equals(y.get(z))) && (!team.get(i).equals(team.get(z)))) {
         				
         				if(Integer.parseInt(x.get(i)) <= 15 && team.get(i).equals("B")) {
+        					if(id.get(z).equals(this.flag.getID())) {
+    							System.out.print("DEIXA  APORRA DA FLAG !!!!!!!!!!!!!!!!!!");
+    							this.flag.setPlayer(null);
+    							this.flag.setX(Integer.parseInt(x.get(i)));
+    							this.flag.setY(Integer.parseInt(y.get(i)));
+    							//System.out.println(this.flag.getID());
+    							//System.out.println(this.flag.getX());
+    							//System.out.println(this.flag.getY());
+    							//System.exit(0);
+    						}
     						Respawn location = Kill(id.get(z), "A");
     						x.add(z, Integer.toString(location.getX()));
     						y.add(z, Integer.toString(location.getY()));
+    						
     						//System.exit(0);
         				}else if(Integer.parseInt(x.get(z)) > 15 && team.get(z).equals("A")){
         					Respawn location = Kill(id.get(i), "B");
@@ -55,13 +74,6 @@ public class PlayerCollider {
         				}
         			}
         			
-        			if(x.get(i).equals(Integer.toString(this.flag.getX())) && y.get(i).equals(Integer.toString(this.flag.getY()))) {
-    					if(team.get(i).equals("A")) {
-        					this.flag.setPlayer(id.get(i));
-        					this.flag.setX(20);
-        					this.flag.setY(Integer.parseInt(y.get(i)));
-    					}
-    				}
         			System.out.println(this.flag.getID());
         			
         			if(this.flag.getID() != null) {
