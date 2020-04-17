@@ -158,7 +158,7 @@ public class Server {
         	
         	//cliente.getCliente().println("Quantidade:"+this.clientes.size());
         	
-        	//System.out.println(location);
+        	System.out.println(location);
         	cliente.getCliente().println(location);
         	
         	if(cliente.getID() == id) {

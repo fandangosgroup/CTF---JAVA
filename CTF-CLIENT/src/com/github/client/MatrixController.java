@@ -54,7 +54,7 @@ public class MatrixController {
     			}
     		}
     	this.positions = colunas;
-    	//this.captureTheFlag();
+    	this.captureTheFlag();
     	this.positionX = this.getX(myPosition);
     	this.positionY = this.getY(myPosition);
     	this.myTeam = this.getTeam(myPosition);
