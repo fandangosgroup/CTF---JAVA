@@ -19,14 +19,17 @@ public class MatrixController {
     }
     
     public char[][] dataManipulation(InputController input, String dados){
+       System.out.println("Recebendo essa String: " + dados);
        char moviment = input.getDir();
        String[] processedData = null;
        this.processDados(dados);
        System.out.println(this.enimyPositions);
+       System.out.println("MINHA POSICAO É X:" + this.positionX);
+       System.out.println("MINHA POSICAO É Y:" + this.positionY);
        this.drawMatriz();
-       //this.enimyPositions.clear();
+       this.enimyPositions.clear();
        
-       /*this.findPosition();
+       /*
        switch(moviment){
             //pra cima == -1 no x
             case 'w':
@@ -100,7 +103,7 @@ public class MatrixController {
     		return y;
     	}
     	aux = this.positions[y].split("-");
-    	return Integer.parseInt(aux[1]);
+    	return Integer.parseInt(aux[2]);
     }
     
     private void clearCurrenPostion(){

@@ -41,15 +41,15 @@ public class SocketRequestControl {
 			while(!GameOver) {
 				Thread.sleep(200);
 				saida.println("Me envie a matriz!");
-				if(r.data.equals("EUODEIOMINHAVIDA")){
+				if(r.select == 0 || r.select == 1){
 					saida.println("Me envie a matriz!");
-
-				}else {
+				}
+				if(r.select == 2){
 					data = matrix.dataManipulation(input, r.data);
 					Client.CleanScreen();
 					print.setMatriz(data);
 					print.RenderPrintConsole(true);
-					
+					saida.println("Me envie a matriz!");
 				}
 
 
@@ -59,36 +59,40 @@ public class SocketRequestControl {
 
     }                
     
+	
+	//CLASSE DIFERENTE
     public class Recebedor implements Runnable {
         public String id = "";
         private String inputController;
         private InputStream servidor;
         public String data = "";
-
+        public int select = 0;
         public Recebedor(InputStream servidor) {
             this.servidor = servidor;
         }
-
+        
+    
         public void run() {
             // recebe msgs do servidor e imprime na tela
             Scanner s = new Scanner(this.servidor);
             while (s.hasNextLine()) {
+            	System.out.println(s.nextLine());
             	this.inputController = s.nextLine();
-            	//System.out.println("aqiu:"+this.inputController.substring(0, 3));
-            	
-            	if(this.inputController.substring(0, 7).equals("idUser:")) {
-            		this.id = this.inputController.substring(7, 15);
-            		this.data = "EUODEIOMINHAVIDA";
-            	}
-            	else if(this.inputController.substring(0, 3).equals("M4X")) {
-            		//System.out.print("ENTROUEEEEEEEEEEEEEEEEEEEEEEEEE");
-            		this.data = inputController;
-            		break;
-            	}else{
-            		this.data = "EUODEIOMINHAVIDA";
-            	}
-                System.out.println(s.nextLine());
+            	this.inputSelect(); 
             }
+        }
+        
+        
+        private void inputSelect(){
+        	if(this.inputController.substring(0, 7).equals("idUser:")){
+        		this.id = this.inputController.substring(7, 15);
+        		this.select = 1;
+        	}
+        	if(this.inputController.substring(0, 3).equals("M4X")){
+        		this.data = inputController;
+        		this.select = 2;
+        	}
+        
         }
     }
 }
