@@ -32,8 +32,6 @@ public class TrataCliente implements Runnable {
     	x = resp.getX();
     	y = resp.getY();
     	team = resp.getLado();
-    	System.out.print(x);
-    	System.out.print(y);
         Positions pos = new Positions(this.id, x, y, team);
         return pos;
     }
@@ -42,9 +40,7 @@ public class TrataCliente implements Runnable {
         // quando chegar uma msg, distribui pra todos
         Scanner s = new Scanner(this.cliente);
         while (s.hasNextLine()) {
-        
 			servidor.distribuiMensagem(s.nextLine(), this.id);
-			
         }
      // Saiu do loop, é porque desconectou...
         servidor.unsetCliente(id);// Remove da lista de clientes da classe Servidor

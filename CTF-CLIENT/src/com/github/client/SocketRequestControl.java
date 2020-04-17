@@ -21,7 +21,6 @@ public class SocketRequestControl {
         System.out.println("O cliente se conectou ao servidor!");
      // thread para receber mensagens do servidor
 	    Recebedor r = new Recebedor(cliente.getInputStream());
-	    
         new Thread(r).start();
         
         char[][] data = new char[30][30];
@@ -32,14 +31,12 @@ public class SocketRequestControl {
         // lê msgs do teclado e manda pro servidor
        
         PrintStream saida = new PrintStream(cliente.getOutputStream());
-      
-        	//saida.println("Me envie a matriz!");
  	       
  	       	boolean GameOver = false;
 			
 			while(!GameOver) {
 				String request = "M4X";
-				Thread.sleep(20);
+				Thread.sleep(140);
 				saida.println("Me envie a matriz!");
 				if(r.select == 0 || r.select == 1){
 					saida.println("Me envie a matriz!");

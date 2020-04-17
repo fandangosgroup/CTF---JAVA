@@ -8,7 +8,7 @@ public class PlayerCollider {
 	private String kill = null;
 	
 	public String processa(String dados) {
-		System.out.println(dados);
+		//System.out.println(dados);
 		String data = dados.substring(3, dados.length());
     	String[] colunas = null;
     	String[] player = null;
@@ -30,14 +30,14 @@ public class PlayerCollider {
         		team.add(player[3]);
         	}
     		
-        	System.out.println("Chegou1");
+        	//System.out.println("Chegou1");
         	for(i=0; i < id.size(); i++) {
         		for(z=0; z < id.size(); z++) {
-        			System.out.println("Chegou2");
-        			System.out.println(id.get(i) +"--"+ id.get(z));
-        			System.out.println(x.get(i) +"--"+ x.get(z));
-        			System.out.println(y.get(i) +"--"+ y.get(z));
-        			System.out.println(team.get(i) +"--"+ team.get(z));
+        			//System.out.println("Chegou2");
+        			//System.out.println(id.get(i) +"--"+ id.get(z));
+        			//System.out.println(x.get(i) +"--"+ x.get(z));
+        			//System.out.println(y.get(i) +"--"+ y.get(z));
+        			//System.out.println(team.get(i) +"--"+ team.get(z));
         			
         			if((!id.get(i).equals(id.get(z))) && (x.get(i).equals(x.get(z))) && (y.get(i).equals(y.get(z))) && (!team.get(i).equals(team.get(z)))) {
         				if(Integer.parseInt(x.get(i)) <= 15 && team.get(i).equals("B")) {
@@ -75,7 +75,7 @@ public class PlayerCollider {
 		}else {
 			spawn = Server.ladoa.get(new Random().nextInt(9));
 		}
-		this.kill = id;
+		//this.kill = id;
 		return spawn;
 	}
 	

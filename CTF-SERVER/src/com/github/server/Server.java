@@ -128,7 +128,7 @@ public class Server {
     	for (Positions Pos : this.positions) {//12 10 20
     		if(msg.substring(0, 3).equals("M4X")) {
     			loc = msg.split("-");
-    			System.out.println(id+" Player Updated");
+    			//System.out.println(id+" Player Updated");
         		if(Pos.getPosID() == id) {
         			Pos.setPosX(Integer.parseInt(loc[1]));
         			Pos.setPosY(Integer.parseInt(loc[2]));
@@ -156,9 +156,9 @@ public class Server {
         for (Clientes cliente : this.clientes) {
         	System.out.println("Cl:"+cliente.getID());
         	
-        	cliente.getCliente().println("Quantidade:"+this.clientes.size());
+        	//cliente.getCliente().println("Quantidade:"+this.clientes.size());
         	
-        	System.out.println(location);
+        	//System.out.println(location);
         	cliente.getCliente().println(location);
         	
         	if(cliente.getID() == id) {
