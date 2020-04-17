@@ -6,8 +6,6 @@ import java.net.Socket;
 
 public class Clientes {
 	private int id;
-	private char[][] matriz;
-	private char tipo;
 	private PrintStream client;
 	private InputStream cli;
 	

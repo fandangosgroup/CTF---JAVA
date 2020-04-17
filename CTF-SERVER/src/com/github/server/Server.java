@@ -50,24 +50,13 @@ public class Server {
     	ladob.add(new Respawn(7,10));
     	ladob.add(new Respawn(7,20));
     	
-    	
-    	for(Respawn rr : ladob) {
-    		System.out.println(rr.getX());
-    		System.out.println(rr.getY());
-    	}
-    	
-    	
     	if(this.firstPlayer == 0) {
     		this.firstPlayer = 1;
     		Respawn aux2 = ladob.get(new Random().nextInt(4));
-    		System.out.println("MASTERAUXaa: "+aux2.getX());
-    		System.out.println("MASTERAUXaa: "+aux2.getY());
     		return aux2;
     	}
     	
     	Respawn aux2 = ladoa.get(new Random().nextInt(4));
-    	System.out.println("MASTERAUXbb: "+aux2.getX());
-    	System.out.println("MASTERAUXbb: "+aux2.getY());
     	return aux2;
     	
     	
@@ -102,9 +91,6 @@ public class Server {
             id2 = cliente.getRemoteSocketAddress().toString().substring(11, 16);
             id1 = id1 + id2;
             int aux = Integer.parseInt(id1);
-            
-//            Clientes cl = new Clientes(ps, aux, cliente.getInputStream());
-//            this.clientes.add(cl);
 
             // cria tratador de cliente numa nova thread
             ps.println("idUser:"+aux);
@@ -124,16 +110,14 @@ public class Server {
 
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
-    	//System.out.println("msg:"+msg);
     	String location = "M4X";
     	int aux;
     	String[] loc = null;
-    	loc = msg.split("-");
-    	System.out.println("DEBUG: "+msg);
     	
     	for (Positions Pos : this.positions) {//12 10 20
     		if(msg.substring(0, 3).equals("M4X")) {
-    			System.out.print("A Mensagem chegou !!!!!");
+    			loc = msg.split("-");
+    			System.out.print(id+" Player Updated");
         		if(Pos.getPosID() == id) {
         			Pos.setPosX(Integer.parseInt(loc[1]));
         			Pos.setPosY(Integer.parseInt(loc[2]));
@@ -154,8 +138,6 @@ public class Server {
     	}
     	
         for (Clientes cliente : this.clientes) {
-        	//System.out.println(msg);
-        	//System.out.println("id:"+id);
         	System.out.println("Cl:"+cliente.getID());
         	
         	cliente.getCliente().println("Quantidade:"+this.clientes.size());
@@ -164,15 +146,7 @@ public class Server {
         	cliente.getCliente().println(location);
         	
         	if(cliente.getID() == id) {
-        		//System.out.println("entrou no if");
-        		//cliente.getCliente().println(data);
-        		
         		cliente.getCliente().println(msg);
-        		//System.out.println(cliente.getCliente().checkError());
-        		
-        		//System.out.println("chegou no if fim");
-        		
-        		//cliente.getCliente().println(msg);
         	}
 			
         }
