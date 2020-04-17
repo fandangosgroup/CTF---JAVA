@@ -112,26 +112,34 @@ public class MatrixController {
     	 switch(moviment){
          //pra cima == -1 no x
          case 'w':
-             this.clearCurrenPostion();
-             this.positionX = this.positionX - 1;
-             input.dirToZero();
+        	 if(this.positionX > 1) {
+        		 this.clearCurrenPostion();
+                 this.positionX = this.positionX - 1;
+        	 }
+        	 input.dirToZero();
              break;
          //pra baixo == +1 no x
          case 's':
+        	 if(this.positionX < 28) {
              this.clearCurrenPostion();
              this.positionX = this.positionX + 1;
+        	 }
              input.dirToZero();
              break;
          //pra esquerda = y-1
          case 'a':
+        	 if(this.positionY > 1) {
              this.clearCurrenPostion();
              this.positionY = this.positionY - 1;
+        	 }
              input.dirToZero();
              break;
          //pra direita = y + 1
          case 'd':
+        	 if(this.positionY < 28) {
              this.clearCurrenPostion();
              this.positionY = this.positionY + 1;
+        	 }
              input.dirToZero();
              break;
     	 }
