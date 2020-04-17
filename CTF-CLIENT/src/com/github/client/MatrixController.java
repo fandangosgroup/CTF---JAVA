@@ -12,29 +12,32 @@ public class MatrixController {
     private Integer positionY;
     private boolean nop;
     private String myTeam;
-    
-    
+    private Integer flagPositionX;
+    private Integer flagPositionY;
+    private boolean isFlagPresent = false;
     public MatrixController(char[][] d){
     	this.nop = false;
         setData(d);
     }
     
     public char[][] dataManipulation(InputController input, String dados, String id){
-       this.id = id;
-       char moviment = input.getDir();
-       String[] processedData = null;
-       this.processDados(dados);
-       this.movePlayer(moviment, input);
-       System.out.println("meu x é: " + this.positionX.toString());
-       System.out.println("meu y é: " + this.positionY.toString());
-       System.out.println("meu time é: " + this.myTeam);
-       System.out.println("teamPosistions" + this.teamPositions);
-       this.clearMatriz();
-       this.drawMatriz();
-       this.enimyPositions.clear();
-       this.teamPositions.clear();
+        this.id = id;
+        char moviment = input.getDir();
+        String[] processedData = null;
+        this.processDados(dados);
+        this.movePlayer(moviment, input);
+       // System.out.println(dados);
+        //System.out.println("meu x é: " + this.positionX.toString());
+        //System.out.println("meu y é: " + this.positionY.toString());
+        //System.out.println("meu time é: " + this.myTeam);
+        //System.out.println("teamPosistions" + this.teamPositions);
+        this.clearMatriz();
+        this.drawMatriz();
+        this.enimyPositions.clear();
+        this.teamPositions.clear();
+        this.isFlagPresent = false;
        
-       return data;
+        return data;
    }
 
     private void processDados(String dados){
@@ -51,6 +54,7 @@ public class MatrixController {
     			}
     		}
     	this.positions = colunas;
+    	//this.captureTheFlag();
     	this.positionX = this.getX(myPosition);
     	this.positionY = this.getY(myPosition);
     	this.myTeam = this.getTeam(myPosition);
@@ -62,6 +66,13 @@ public class MatrixController {
     private String getTeam(int x) {
     	String[] aux;
     	aux = this.positions[x].split("-");
+    	for(int y = 0; y < this.positions.length; y++) {
+    		System.out.println("posições" + this.positions[y]);
+    	}
+    	for(x = 0; x < aux.length; x++) {
+    		System.out.println("buscando time em no array " + aux[x]);
+    	}
+    	
     	return aux[3];
     }
     
@@ -85,7 +96,7 @@ public class MatrixController {
     	return Integer.parseInt(aux[2]);
     }
     
-    private void clearCurrenPostion(){
+    private void clearCurrentPostion(){
        this.data[this.positionX][this.positionY] = ' ';
     }
     private void clearMatriz(){
@@ -107,6 +118,11 @@ public class MatrixController {
     			}
     			if((!this.nop) && x == this.positionX && y == this.positionY) {
     				this.data[x][y] = 'X';
+    			}
+    			if(this.isFlagPresent == true) {
+    				if(x == this.flagPositionX && y == this.flagPositionY) {
+        				this.data[x][y] = '@';
+    				}
     			}
     		}
     	}
@@ -143,7 +159,7 @@ public class MatrixController {
          //pra cima == -1 no x
          case 'w':
         	 if(this.positionX > 1) {
-        		 this.clearCurrenPostion();
+        		 this.clearCurrentPostion();
                  this.positionX = this.positionX - 1;
         	 }
         	 input.dirToZero();
@@ -151,7 +167,7 @@ public class MatrixController {
          //pra baixo == +1 no x
          case 's':
         	 if(this.positionX < 28) {
-             this.clearCurrenPostion();
+             this.clearCurrentPostion();
              this.positionX = this.positionX + 1;
         	 }
              input.dirToZero();
@@ -159,7 +175,7 @@ public class MatrixController {
          //pra esquerda = y-1
          case 'a':
         	 if(this.positionY > 1) {
-             this.clearCurrenPostion();
+             this.clearCurrentPostion();
              this.positionY = this.positionY - 1;
         	 }
              input.dirToZero();
@@ -167,12 +183,26 @@ public class MatrixController {
          //pra direita = y + 1
          case 'd':
         	 if(this.positionY < 28) {
-             this.clearCurrenPostion();
+             this.clearCurrentPostion();
              this.positionY = this.positionY + 1;
         	 }
              input.dirToZero();
              break;
     	 }
+    }
+    private void captureTheFlag() {
+    	for(int x =0; x < this.positions.length; x++) {
+    		String[] aux;
+    		if(this.positions[x].matches("FL4G(.*)")) {
+    			this.isFlagPresent = true;
+    			
+    			aux = this.positions[x].split("-");
+    			this.flagPositionX = Integer.parseInt(aux[1]);
+    			this.flagPositionY = Integer.parseInt(aux[2]);
+    			this.positions[x] = null;
+    		}
+    		System.out.println(this.positions[x]);
+    	}
     }
     public char[][] getData() {
         return data;
