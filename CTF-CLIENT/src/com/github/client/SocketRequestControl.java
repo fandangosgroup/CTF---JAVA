@@ -62,10 +62,7 @@ public class SocketRequestControl {
 					System.out.println("DIGITE A CHAVE PARA ENCRIPTAR!");
 					cpt.inputKey(s.nextLine());
 					s.close();
-<<<<<<< HEAD
 					saida.println("VTNC");
-=======
->>>>>>> ff45380e13e9623618807f23beca9534f0b9a061
 					cpt.cesar();
 					saida.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
 					this.isKey = true;
