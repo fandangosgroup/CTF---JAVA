@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class PlayerCollider {
 	private String kill = null;
+	private Flag flag = new Flag(null,10,10);
 	
 	public String processa(String dados) {
 		//System.out.println(dados);
@@ -40,6 +41,7 @@ public class PlayerCollider {
         			//System.out.println(team.get(i) +"--"+ team.get(z));
         			
         			if((!id.get(i).equals(id.get(z))) && (x.get(i).equals(x.get(z))) && (y.get(i).equals(y.get(z))) && (!team.get(i).equals(team.get(z)))) {
+        				
         				if(Integer.parseInt(x.get(i)) <= 15 && team.get(i).equals("B")) {
     						Respawn location = Kill(id.get(z), "A");
     						x.add(z, Integer.toString(location.getX()));
@@ -52,6 +54,22 @@ public class PlayerCollider {
         					//System.exit(0);
         				}
         			}
+        			
+        			if(x.get(i).equals(Integer.toString(flag.getX())) && y.get(i).equals(Integer.toString(flag.getY()))) {
+    					if(team.get(i).equals("A")) {
+    						System.out.print("CAPTUREI A BANDEIRA!!");
+        					flag.setPlayer(id.get(i));
+        					flag.setX(Integer.parseInt(x.get(i)));
+        					flag.setY(Integer.parseInt(y.get(i)));
+    					}
+    				}
+        			
+        			if(flag.getID() != null) {
+        				if(id.get(i).equals(flag.getID())){
+        					flag.setX(Integer.parseInt(x.get(i)));
+        					flag.setY(Integer.parseInt(y.get(i)));
+        				}
+        			}
         		}
         	}
         	
@@ -61,6 +79,7 @@ public class PlayerCollider {
         		matriz = matriz + "-" + y.get(i);
         		matriz = matriz + "-" + team.get(i);
         		matriz = matriz + ",";
+        		matriz = matriz + "FL4G" + "-" + flag.getX() + "-" + flag.getY();
         	}
         	
     	}
