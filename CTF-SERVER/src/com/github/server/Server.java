@@ -13,7 +13,7 @@ public class Server {
 	private int porta;
     private List<Clientes> clientes;
     private List<Positions> positions;
-    private int firstPlayer = 0;
+    public int firstPlayer = 0;
 	
 	public static void main(String[] args) throws IOException {
         // inicia o servidor
@@ -78,11 +78,13 @@ public class Server {
     	
     	if(this.firstPlayer == 0) {
     		this.firstPlayer = 1;
-    		aux = ladob.get(new Random().nextInt(4));
-    		return aux;
+    		Respawn aux2 = ladob.get(new Random().nextInt(4));
+    		System.out.println("MASTERAUX: "+aux2.getY());
+    		return aux2;
     	}else {
-    		aux = ladoa.get(new Random().nextInt(4));
-    		return aux;
+    		Respawn aux2 = ladoa.get(new Random().nextInt(4));
+    		System.out.println("MASTERAUXbb: "+aux2.getX());
+    		return aux2;
     	}
     	
     }
