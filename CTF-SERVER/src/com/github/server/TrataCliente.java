@@ -26,7 +26,13 @@ public class TrataCliente implements Runnable {
     }
     
     public Positions getPos() {
-        Positions pos = new Positions(this.id, new Random().nextInt(15), new Random().nextInt(5));
+    	int x = 1,y = 1;
+    	Respawn resp = servidor.respawn();
+    	x = resp.getX();
+    	y = resp.getY();
+    	System.out.print(x);
+    	System.out.print(y);
+        Positions pos = new Positions(this.id, x, y);
         return pos;
     }
 

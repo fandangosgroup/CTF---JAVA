@@ -7,11 +7,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
   
 public class Server {
 	private int porta;
     private List<Clientes> clientes;
     private List<Positions> positions;
+    private int firstPlayer = 0;
 	
 	public static void main(String[] args) throws IOException {
         // inicia o servidor
@@ -31,6 +33,58 @@ public class Server {
     			break;
     		}
     	}
+    }
+    
+    public Respawn respawn() {
+    	Respawn aux = new Respawn();
+    	List<Respawn>ladoa = new ArrayList<Respawn>();
+    	aux.setLado("a");
+    	aux.setX(25);
+    	aux.setY(15);
+    	ladoa.add(aux);
+    	aux.setLado("a");
+    	aux.setX(25);
+    	aux.setY(20);
+    	ladoa.add(aux);
+    	aux.setLado("a");
+    	aux.setX(25);
+    	aux.setY(25);
+    	ladoa.add(aux);
+    	aux.setLado("a");
+    	aux.setX(27);
+    	aux.setY(10);
+    	ladoa.add(aux);
+    	aux.setLado("a");
+    	aux.setX(27);
+    	aux.setY(15);
+    	ladoa.add(aux);
+    	
+    	List<Respawn>ladob = new ArrayList<Respawn>();
+    	aux.setX(5);
+    	aux.setY(15);
+    	ladob.add(aux);
+    	aux.setX(5);
+    	aux.setY(20);
+    	ladob.add(aux);
+    	aux.setX(5);
+    	aux.setY(25);
+    	ladob.add(aux);
+    	aux.setX(7);
+    	aux.setY(10);
+    	ladob.add(aux);
+    	aux.setX(7);
+    	aux.setY(20);
+    	ladob.add(aux);
+    	
+    	if(this.firstPlayer == 0) {
+    		this.firstPlayer = 1;
+    		aux = ladob.get(3);
+    		return aux;
+    	}else {
+    		aux = ladoa.get(2);
+    		return aux;
+    	}
+    	
     }
     
     public void unsetPos(int id) {
@@ -88,13 +142,13 @@ public class Server {
     	String location = "M4X";
     	int aux;
     	String[] loc = null;
-    	loc = msg.split(",");
+    	loc = msg.split("-");
     	
     	for (Positions Pos : this.positions) {//12 10 20
     		if(msg.substring(0, 3) == "M4X") {
         		if(Pos.getPosID() == id) {
-        			Pos.setPosX(Integer.parseInt(loc[1]));
-        			Pos.setPosY(Integer.parseInt(loc[2]));
+        			Pos.setPosX(Integer.parseInt(loc[2]));
+        			Pos.setPosY(Integer.parseInt(loc[1]));
         		}
         	}
     		
