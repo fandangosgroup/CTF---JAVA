@@ -79,6 +79,7 @@ public class MatrixController {
     private void drawMatriz() {
     	for (int x = 0; x < getData().length; x++) {
     		for (int y = 0; y < getData().length; y++) {
+    			this.data[x][y] = ' ';
     			if(x == 0 || x == 29 || y == 0 || y == 29) {
     				this.data[x][y] = '#';
     			}
