@@ -25,7 +25,7 @@ public class MatrixController {
         char moviment = input.getDir();
         this.processDados(dados);
         this.movePlayer(moviment, input);
-       // System.out.println(dados);
+        //System.out.println(dados);
         //System.out.println("meu x é: " + this.positionX.toString());
         //System.out.println("meu y é: " + this.positionY.toString());
         //System.out.println("meu time é: " + this.myTeam);
@@ -66,10 +66,10 @@ public class MatrixController {
     	String[] aux;
     	aux = this.positions[x].split("-");
     	for(int y = 0; y < this.positions.length; y++) {
-    		System.out.println("posições" + this.positions[y]);
+    		//System.out.println("posições" + this.positions[y]);
     	}
     	for(x = 0; x < aux.length; x++) {
-    		System.out.println("buscando time em no array " + aux[x]);
+    		//System.out.println("buscando time em no array " + aux[x]);
     	}
     	
     	return aux[3];
@@ -204,7 +204,7 @@ public class MatrixController {
     			this.flagPositionY = Integer.parseInt(aux[2]);
     			this.positions[x] = null;
     		}
-    		System.out.println(this.positions[x]);
+    		//System.out.println(this.positions[x]);
     	}
     }
     public char[][] getData() {

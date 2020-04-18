@@ -99,6 +99,7 @@ public class SocketRequestControl {
             Scanner s = new Scanner(this.servidor);
             while (s.hasNextLine()) {
             	this.inputController = s.nextLine();
+            	//System.out.println(this.inputController);
             	this.inputSelect(); 
             }
         }
@@ -117,7 +118,7 @@ public class SocketRequestControl {
         	if(this.inputController.equals("PrimeiroPlayer")) {
         		this.select = 3;
         	}
-        	if(this.inputController.substring(0, 7).equals("GameOver")){
+        	if(this.inputController.substring(0, 8).equals("GameOver")){
         		String[] aux = this.inputController.split("-");
         		this.text = aux[1];
         		this.key = aux[2];

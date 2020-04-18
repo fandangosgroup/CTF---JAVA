@@ -6,7 +6,8 @@ import java.util.Random;
 
 public class PlayerCollider {
 	private String kill = null;
-	private Flag flag = new Flag(15,10);
+	private Flag flag = new Flag(5,15);
+	private boolean GameStatus = false;
 	
 	public String processa(String dados) {
 		//System.out.println(dados);
@@ -74,12 +75,15 @@ public class PlayerCollider {
         				}
         			}
         			
-        			System.out.println(this.flag.getID());
+        			//System.out.println(this.flag.getID());
         			
         			if(this.flag.getID() != null) {
         				if(id.get(i).equals(this.flag.getID())){
         					this.flag.setX(Integer.parseInt(x.get(i)));
         					this.flag.setY(Integer.parseInt(y.get(i)));
+        					if(Integer.parseInt(x.get(i)) > 15) {
+        						this.GameStatus = true;
+        					}
         					//System.exit(0);
         				}
         			}
@@ -115,6 +119,10 @@ public class PlayerCollider {
 	
 	public String getKill() {
 		return this.kill;
+	}
+	
+	public boolean getStatus() {
+		return this.GameStatus;
 	}
 	
 	

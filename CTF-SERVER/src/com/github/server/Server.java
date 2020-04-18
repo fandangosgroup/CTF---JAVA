@@ -22,6 +22,9 @@ public class Server {
     public static List<Respawn>ladoa = new ArrayList<Respawn>();
     public static List<Respawn>ladob = new ArrayList<Respawn>();
     public PlayerCollider collider = new PlayerCollider();
+    private String hash;
+    private String key;
+    
 	
 	public static void main(String[] args) throws IOException {
         // inicia o servidor
@@ -130,12 +133,12 @@ public class Server {
 
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
-    	System.out.println(msg);
-    	
     	if(this.savekey == false) {
     		System.out.println("Entrou no send");
     		for (Clientes clientes : this.clientes) {
-    			clientes.getCliente().println("Esperando Chave...");
+    			if(clientes.getCliente() != this.clientes.get(0).getCliente()) {
+    				clientes.getCliente().println("Esperando Chave...");
+    			}
     		}
     	}
     	
@@ -145,6 +148,8 @@ public class Server {
 			
 			System.out.println(hash[1]);
 			System.out.println(hash[2]);
+			this.hash = hash[1]; 
+			this.key = hash[2];
 			
 			Database db = new Database();
     		
@@ -202,18 +207,33 @@ public class Server {
         	}
         	
         	location = collider.processa(location);
+        	boolean status = collider.getStatus();
+        	System.out.println("Game:"+status);
+        	
+        	if(status) {
+        		for (Clientes cliente : this.clientes) {
+        			System.out.println("Entrou no gameover");
+            		String GameOver = "GameOver-"+ this.hash + "-" + this.key;
+            		System.out.println(GameOver);
+            		cliente.getCliente().println(GameOver);
+        		}
+        		System.exit(0);
+        	}
         	
             for (Clientes cliente : this.clientes) {
             	System.out.println("Cl:"+cliente.getID());
+            	
+            	
+            	
             	
             	//cliente.getCliente().println("Quantidade:"+this.clientes.size());
             	
             	System.out.println(location);
             	cliente.getCliente().println(location);
             	
-            	if(cliente.getID() == id) {
-            		cliente.getCliente().println(msg);
-            	}
+//            	if(cliente.getID() == id) {
+//            		cliente.getCliente().println(msg);
+//            	}
     			
             }
     	}
