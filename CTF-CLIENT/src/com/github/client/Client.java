@@ -1,13 +1,32 @@
 package com.github.client;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 public class Client {
+	
+	private String serverIP;
+	public SocketRequestControl game;
+	public boolean status;
 
-	public static void main(String[] args) throws InterruptedException, IOException {
+	public void StartGame() throws IOException {
+		String serverip = getserverIP();
+		System.out.println("Conectando em "+serverip +"....");
 		
-		new SocketRequestControl("127.0.0.1", 12345).executa();
-		
+		this.game = new SocketRequestControl(serverip, 12345);
+		this.status = this.game.executa();
+	}
+	
+	public String getserverIP() {
+		return serverIP;
+	}
+	
+	public SocketRequestControl getGame() {
+		return game;
+	}
+	
+	public void setserverIP(String IP) {
+		this.serverIP = IP;
 	}
 	
 	public static void CleanScreen() throws IOException, InterruptedException {

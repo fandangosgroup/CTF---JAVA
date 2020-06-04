@@ -5,12 +5,12 @@ public class Flag {
 	private int x;
 	private int y;
 	
-	public Flag(int x, int y) {
-		//this.idplayer = id;
+	public Flag(String id, int x, int y) {
+		this.idplayer = id;
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	public void setX(int x) {
 		this.x = x;
 	}

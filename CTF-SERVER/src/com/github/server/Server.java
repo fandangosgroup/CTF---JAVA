@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Random;
   
 public class Server {
-	private int porta;
+	private int porta = 0;
     private List<Clientes> clientes;
     private List<Positions> positions;
     public int firstPlayer = 0;
@@ -22,8 +22,8 @@ public class Server {
     public static List<Respawn>ladoa = new ArrayList<Respawn>();
     public static List<Respawn>ladob = new ArrayList<Respawn>();
     public PlayerCollider collider = new PlayerCollider();
-    private String hash;
-    private String key;
+    private String hash = "";
+    private String key = ""; 
     
 	
 	public static void main(String[] args) throws IOException {
@@ -99,17 +99,24 @@ public class Server {
         while (true) {
             // aceita um cliente
             Socket cliente = servidor.accept();
-            System.out.println("Nova conexão com o cliente " + cliente.getInetAddress().getHostAddress());
+            System.out.println("Nova conexï¿½o com o cliente " + cliente.getInetAddress().getHostAddress());
             System.out.println(cliente.getRemoteSocketAddress());
             
-            // adiciona saida do cliente à lista
+            // adiciona saida do cliente ï¿½ lista
             PrintStream ps = new PrintStream(cliente.getOutputStream());
             
-            String id1,id2;
-            id1 = cliente.getRemoteSocketAddress().toString().substring(1, 4);
-            id2 = cliente.getRemoteSocketAddress().toString().substring(11, 16);
-            id1 = id1 + id2;
+            String id1;
+            String [] id2;
+            id1 = cliente.getRemoteSocketAddress().toString().substring(1);
+            id2 = id1.split("\\.");
+            id1 = id2[3].substring( id2[3].length() -5, id2[3].length());
+            id1 = id2[0] + id1;
+            //id2 = cliente.getRemoteSocketAddress().toString().substring(11, 16);
+            //id1 = cliente.getRemoteSocketAddress().toString().substring(1).split("\\.");
+            //id2 = id1[3];
+            //id1 = id1 + id2;
             int aux = Integer.parseInt(id1);
+            System.out.println(aux);
 
             // cria tratador de cliente numa nova thread
             ps.println("idUser:"+aux); //manda o id do cliente ao conectar
@@ -207,6 +214,7 @@ public class Server {
         	}
         	
         	location = collider.processa(location);
+        	System.out.println(location);
         	boolean status = collider.getStatus();
         	System.out.println("Game:"+status);
         	
@@ -217,6 +225,7 @@ public class Server {
             		System.out.println(GameOver);
             		cliente.getCliente().println(GameOver);
         		}
+        		System.out.print("Fim de Jogo - Danï¿½a do Caixï¿½o");
         		System.exit(0);
         	}
         	
@@ -224,11 +233,7 @@ public class Server {
             	System.out.println("Cl:"+cliente.getID());
             	
             	
-            	
-            	
             	//cliente.getCliente().println("Quantidade:"+this.clientes.size());
-            	
-            	System.out.println(location);
             	cliente.getCliente().println(location);
             	
 //            	if(cliente.getID() == id) {

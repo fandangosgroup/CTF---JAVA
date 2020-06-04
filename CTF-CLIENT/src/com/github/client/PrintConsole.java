@@ -1,5 +1,7 @@
 package com.github.client;
 
+import com.github.uifxctf.FXTela;
+
 public class PrintConsole {
 	private char[][] matriz;
 	
@@ -7,7 +9,7 @@ public class PrintConsole {
 		this.matriz = matriz;
 	}
 	
-	public void RenderPrintConsole(boolean z) {
+	public void RenderPrintConsole() {
 		int x,y;
 			for(x = 0; x < 30; x++) {
 				for(y = 0; y < 30; y++) {

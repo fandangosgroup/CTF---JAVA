@@ -1,5 +1,9 @@
 package com.github.server;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -29,12 +33,26 @@ public class Database {
 		  //"jdbc: mysql:/localhost:3306/meu_bd";
 		  hostName = "us-cdbr-iron-east-05.cleardb.net";
 		  userName = "baaf8787ff1507";
-		  password = "7ec630fc";    
+		  //password = "7ec630fc";    
 		  jdbcDriver = "com.mysql.jdbc.Driver";
 		  dataBaseName = "heroku_b481894670aeac7";
 		  dataBasePrefix = "jdbc: mysql:/";
 		  dabaBasePort = "3306";
-		 
+		  
+		  try {
+			BufferedReader arquivo = new BufferedReader(new FileReader("database.txt"));
+			password = arquivo.readLine();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
+		  
+		  
+		  
+		  
 		  url = dataBasePrefix + hostName + ":"+dabaBasePort+"/" + dataBaseName + "/";
 		  url = "jdbc:mysql://us-cdbr-iron-east-05.cleardb.net:3306/heroku_b481894670aeac7?useTimezone=true&serverTimezone=UTC";
 		 
