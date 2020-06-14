@@ -5,7 +5,6 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -23,7 +22,8 @@ public class Server {
     public static List<Respawn>ladob = new ArrayList<Respawn>();
     public PlayerCollider collider = new PlayerCollider();
     private String hash = "";
-    private String key = ""; 
+    private String key = "";
+	private ServerSocket servidor; 
     
 	
 	public static void main(String[] args) throws IOException {
@@ -91,7 +91,7 @@ public class Server {
     }
 
     public void executa () throws IOException {
-        ServerSocket servidor = new ServerSocket(this.porta);
+        servidor = new ServerSocket(this.porta);
         System.out.println("Servidor Aberto!");
         System.out.println("Porta 12345 aberta!");
         System.out.println("Iniciado!");
@@ -168,7 +168,7 @@ public class Server {
 				String sql = "INSERT INTO CRIPTO VALUES(null,'"+hash[1]+"','"+hash[2]+"')";
 				System.out.println(sql);
 				
-				int resul = st.executeUpdate(sql);
+				//int resul = st.executeUpdate(sql);
 				
 				//resul.next();
 				//System.out.println("chegouAQUI");

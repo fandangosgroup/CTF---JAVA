@@ -1,35 +1,24 @@
 package com.github.uifxctf;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-
-import com.github.client.Client;
 import com.github.client.SocketRequestControl;
-
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class HomeController {
+
+public class GameController {
+	private ClassLoader cl = this.getClass().getClassLoader();
 	
-	private ImageView flag = new ImageView(new File("resources\\images\\flag.png").toURI().toString());
-	private ImageView player = new ImageView(new File("resources\\\\images\\\\player.png").toURI().toString());
-	private String fenemy = new File("resources\\\\images\\\\enemy.jpg").toURI().toString();
-	private String ffriend = new File("resources\\\\images\\\\friend.jpg").toURI().toString();
-	private ImageView mapa = new ImageView(new File("resources\\\\images\\\\mapa.png").toURI().toString());
+	private ImageView flag = new ImageView(this.cl.getResource("resources/images/flag.png").toString());
+	private ImageView player = new ImageView(this.cl.getResource("resources/images/player.png").toString());
+	private String fenemy = this.cl.getResource("resources/images/enemy.png").toString();
+	private String ffriend = this.cl.getResource("resources/images/friend.png").toString();
+	private ImageView mapa = new ImageView(this.cl.getResource("resources/images/mapa.png").toString());
 	
 	@FXML
 	private Button Exit;
@@ -50,7 +39,7 @@ public class HomeController {
 	private static Runnable t1 = new Runnable() {
 		public void run() {
 			try {
-				HomeController.game.runGame();
+				GameController.game.runGame();
 			} catch (InterruptedException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -61,8 +50,8 @@ public class HomeController {
 	private Runnable t2 = new Runnable() {
 		public void run() {
 			System.out.println("DEBUGGGGGGGGGGGGGGGGGGGG");
-			System.out.println(HomeController.game.getGameStatus());
-			while(HomeController.game.getGameStatus() == true) {
+			System.out.println(GameController.game.getGameStatus());
+			while(GameController.game.getGameStatus() == true) {
 				System.out.println("DEBUGGGGGGGGGGGGGGGGGGGG");
 				try {
 					Thread.sleep(100);
@@ -71,7 +60,7 @@ public class HomeController {
 					e.printStackTrace();
 				}
 				
-				char[][] matriz = HomeController.game.getMatriz();
+				char[][] matriz = GameController.game.getMatriz();
 				if(matriz != null) {
 					this.renderMatriz(matriz);
 				}
@@ -155,12 +144,12 @@ public class HomeController {
 		
 		//this.game = cliente.game;
 		
-		HomeController.game = new SocketRequestControl(getTextFieldIP(), 12345);
+		GameController.game = new SocketRequestControl(getTextFieldIP(), 12345);
 		
 		//boolean status = this.game.executa();
 		
-		if(HomeController.game.executa()) {
-			FXTela.chageScreen("game");
+		if(GameController.game.executa()) {
+			ClientFX.chageScreen("game");
 			new Thread(t1).start();
 		}else {
 			setLabelResposta("Connection refused: connect");
@@ -174,18 +163,9 @@ public class HomeController {
 
 	public void startgameAction() {
 		new Thread(t2).start();
-//		File fileimage = new File("C:\\Users\\fabeg\\Documents\\player.png");
-//		ImageView player = new ImageView(fileimage.toURI().toString());
-//		player.setFitHeight(25);
-//		player.setFitWidth(23);
-//		player.setLayoutX(35);
-//		player.setLayoutY(24);
-//		player.setId("player");
 		matriz.getChildren().remove(comeca);
-//		matriz.getChildren().add(player);
 		
-		
-		boolean state = HomeController.game.getGameStatusFirstPlayer();
+		boolean state = GameController.game.getGameStatusFirstPlayer();
 		
 		System.out.println(state);
 		
@@ -194,8 +174,8 @@ public class HomeController {
 				Popup.display();
 				System.out.println(Popup.getA());
 				System.out.println(Popup.getB());
-				HomeController.game.setHash(Popup.getA());
-				HomeController.game.setKey(Popup.getB());
+				GameController.game.setHash(Popup.getA());
+				GameController.game.setKey(Popup.getB());
 				System.out.println("Inseri as cosias");
 			});
 		}

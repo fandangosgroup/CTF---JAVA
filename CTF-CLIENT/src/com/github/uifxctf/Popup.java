@@ -1,7 +1,5 @@
 package com.github.uifxctf;
 
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;

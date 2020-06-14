@@ -1,7 +1,5 @@
 package com.github.uifxctf;
 	
-import org.aerofx.AeroFX;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -9,12 +7,12 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
+import org.aerofx.AeroFX;
 
 
 
-public class FXTela extends Application {
+public class ClientFX extends Application {
 	
 	public static Stage stage;
 	

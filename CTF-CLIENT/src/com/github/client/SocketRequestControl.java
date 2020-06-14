@@ -1,14 +1,10 @@
 package com.github.client;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
-
-import com.github.uifxctf.FXTela;
 
 public class SocketRequestControl {
   
@@ -16,6 +12,8 @@ public class SocketRequestControl {
 	private String host;
     private int porta;
     public boolean isKey = false;
+    
+    private boolean Console = false;
     
     private Socket cliente;
     private Recebedor recebedor;
@@ -56,11 +54,15 @@ public class SocketRequestControl {
 			}
 			if(r.select == 2){
 				data = matrix.dataManipulation(input, r.data, r.id);
-				//Client.CleanScreen();
-				//print.setMatriz(data);
-				//print.RenderPrintConsole();
 				//System.out.println("GAME IS ONLINE!!");
-				this.setMatriz(data);
+				if(this.Console) {
+					ClientConsole.CleanScreen();
+					print.setMatriz(data);
+					print.RenderPrintConsole();
+				}else {
+					this.setMatriz(data);
+				}
+				
 				request += r.id;
 				request += "-" + matrix.getPosX().toString();
 				request += "-" + matrix.getPosY().toString();
@@ -128,6 +130,10 @@ public class SocketRequestControl {
         
 		return true;
     }
+	
+	public void setConsole(boolean param) {
+		this.Console = param;
+	}
 
 	public boolean getGameStatusFirstPlayer() {
 		return SocketRequestControl.firstplayer;

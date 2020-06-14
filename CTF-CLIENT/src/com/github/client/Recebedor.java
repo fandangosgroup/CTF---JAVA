@@ -25,6 +25,7 @@ public class Recebedor implements Runnable {
         	//System.out.println(this.inputController);
         	this.inputSelect(); 
         }
+        s.close();
     }
     
     

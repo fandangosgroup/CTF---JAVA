@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.mysql.*;
 
 public class Database {
 	private Connection con = null;
@@ -20,6 +19,8 @@ public class Database {
 	 private String dataBaseName = null;
 	 private String dataBasePrefix = null;
 	 private String dabaBasePort = null;
+
+	private BufferedReader arquivo;
 	 
 	 public Database() {
 		  super();
@@ -40,13 +41,11 @@ public class Database {
 		  dabaBasePort = "3306";
 		  
 		  try {
-			BufferedReader arquivo = new BufferedReader(new FileReader("database.txt"));
+			arquivo = new BufferedReader(new FileReader("database.txt"));
 			password = arquivo.readLine();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}   
 		  

@@ -1,7 +1,5 @@
 package com.github.client;
 
-import com.github.uifxctf.FXTela;
-
 public class PrintConsole {
 	private char[][] matriz;
 	
