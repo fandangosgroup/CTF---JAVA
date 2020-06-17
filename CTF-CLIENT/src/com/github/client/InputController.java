@@ -20,11 +20,11 @@ public class InputController extends JFrame{
 				}
 			}
 		});
-	}
+	} 
 	public void dirToZero(){
             setDir(' ');
         }
-	public char getDir() {
+	public char getDir() { 
 		return dir;
 	}
 	

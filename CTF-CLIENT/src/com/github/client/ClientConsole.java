@@ -11,7 +11,7 @@ public class ClientConsole {
 
 	public SocketRequestControl game;
 	private BufferedReader arquivo;
-
+ 
 	public void StartGame() throws IOException {
 		arquivo = new BufferedReader(new FileReader("endereço.txt"));
 		String ip = arquivo.readLine();

@@ -5,6 +5,9 @@ import java.io.PrintStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+
+import javafx.scene.image.ImageView;
 
 public class SocketRequestControl {
   
@@ -12,13 +15,14 @@ public class SocketRequestControl {
 	private String host;
     private int porta;
     public boolean isKey = false;
+    public ArrayList<Meteoro> meteoros = new ArrayList<Meteoro>();
     
     private boolean Console = false;
     
     private Socket cliente;
     private Recebedor recebedor;
-    private PrintStream saida;
-    
+    private PrintStream saida; 
+    private InputControllerGUI input;
     private String key = "empty";
     private String hash = "empty";
     
@@ -38,8 +42,8 @@ public class SocketRequestControl {
     	PrintStream saida = this.saida;
     	
     	char[][] data = new char[30][30];
-	    InputController input = new InputController();
-	    MatrixController matrix = new MatrixController(data);
+	    //InputController input = new InputController();
+    	MatrixController matrix = new MatrixController(data);
 	    PrintConsole print = new PrintConsole();
 	    
 	    boolean GameOver = false;
@@ -130,7 +134,7 @@ public class SocketRequestControl {
         
 		return true;
     }
-	
+	 
 	public void setConsole(boolean param) {
 		this.Console = param;
 	}
@@ -149,6 +153,9 @@ public class SocketRequestControl {
 	
 	public void setHash(String value) {
 		this.hash = value;
+	}
+	public void setInput(InputControllerGUI input) {
+		this.input = input;
 	}
   
 }

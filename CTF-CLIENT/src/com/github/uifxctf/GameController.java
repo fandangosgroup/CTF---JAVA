@@ -1,6 +1,10 @@
 package com.github.uifxctf;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
+
+import com.github.client.Meteoro;
 import com.github.client.SocketRequestControl;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -12,16 +16,20 @@ import javafx.scene.layout.Pane;
 
 
 public class GameController {
-	private ClassLoader cl = this.getClass().getClassLoader();
 	
+	private ClassLoader cl = this.getClass().getClassLoader();
 	private ImageView flag = new ImageView(this.cl.getResource("resources/images/flag.png").toString());
 	private ImageView player = new ImageView(this.cl.getResource("resources/images/player.png").toString());
 	private String fenemy = this.cl.getResource("resources/images/enemy.png").toString();
 	private String ffriend = this.cl.getResource("resources/images/friend.png").toString();
 	private ImageView mapa = new ImageView(this.cl.getResource("resources/images/mapa.png").toString());
+	private ImageView mapa2 = new ImageView(this.cl.getResource("resources/images/mapa2.png").toString());
+	private int flagMap = 0;
+	
 	
 	@FXML
 	private Button Exit;
+	
 	@FXML
 	private TextField IP;
 	
@@ -49,10 +57,10 @@ public class GameController {
 	
 	private Runnable t2 = new Runnable() {
 		public void run() {
-			System.out.println("DEBUGGGGGGGGGGGGGGGGGGGG");
-			System.out.println(GameController.game.getGameStatus());
+			//System.out.println("DEBUGGGGGGGGGGGGGGGGGGGG");
+			//System.out.println(GameController.game.getGameStatus());
 			while(GameController.game.getGameStatus() == true) {
-				System.out.println("DEBUGGGGGGGGGGGGGGGGGGGG");
+				//System.out.println("DEBUGGGGGGGGGGGGGGGGGGGG");
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
@@ -61,20 +69,30 @@ public class GameController {
 				}
 				
 				char[][] matriz = GameController.game.getMatriz();
+				
 				if(matriz != null) {
 					this.renderMatriz(matriz);
 				}
-				
 			}
 			System.exit(0);
 		}
-
+		
+		
 		private void renderMatriz(char[][] matriz2) {
 			int x,y;
+			for (int _x = 0; _x < 12; _x++) {
+				GameController.game.meteoros.get(_x).moveMeteor();
+			}
 			
 			Platform.runLater(() -> {
 				matriz.getChildren().clear();
-				matriz.getChildren().add(mapa);
+				switch(flagMap) {
+					case 0 : matriz.getChildren().add(mapa); flagMap = 1; break;
+					case 1 : matriz.getChildren().add(mapa2); flagMap = 0; break;
+				}
+			for (int _x =0; _x < 12; _x++) {
+				matriz.getChildren().add(GameController.game.meteoros.get(_x).getImg());
+			}
 			});
 				
 			for(x=0;x<30;x++) {
@@ -82,8 +100,8 @@ public class GameController {
 					if(matriz2[x][y] == '@') {
 						flag.setLayoutX(y * 10);
 						flag.setLayoutY(x * 10);
-						flag.setFitHeight(15);
-						flag.setFitWidth(15);
+						flag.setFitHeight(30);
+						flag.setFitWidth(30);
 						flag.setId("flag");
 						Platform.runLater(() -> {
 							matriz.getChildren().add(flag);
@@ -92,8 +110,8 @@ public class GameController {
 					if(matriz2[x][y] == 'X') {
 						player.setLayoutX(y * 10);
 						player.setLayoutY(x * 10);
-						player.setFitHeight(15);
-						player.setFitWidth(15);
+						player.setFitHeight(30);
+						player.setFitWidth(30);
 						player.setId("player");
 						Platform.runLater(() -> {
 							matriz.getChildren().add(player);
@@ -101,8 +119,8 @@ public class GameController {
 					}
 					if(matriz2[x][y] == 'O') {
 						ImageView enemy = new ImageView(fenemy);
-						enemy.setFitHeight(15);
-						enemy.setFitWidth(15);
+						enemy.setFitHeight(30);
+						enemy.setFitWidth(30);
 						enemy.setLayoutX(y * 10);
 						enemy.setLayoutY(x * 10);
 						enemy.setId("enemy");
@@ -112,8 +130,8 @@ public class GameController {
 					}
 					if(matriz2[x][y] == 'Y') {
 						ImageView friend = new ImageView(ffriend);
-						friend.setFitHeight(15);
-						friend.setFitWidth(15);
+						friend.setFitHeight(30);
+						friend.setFitWidth(30);
 						friend.setLayoutX(y * 10);
 						friend.setLayoutY(x * 10);
 						friend.setId("friend");
@@ -145,16 +163,16 @@ public class GameController {
 		//this.game = cliente.game;
 		
 		GameController.game = new SocketRequestControl(getTextFieldIP(), 12345);
-		
 		//boolean status = this.game.executa();
 		
 		if(GameController.game.executa()) {
 			ClientFX.chageScreen("game");
+			GameController.game.setInput(ClientFX.getInputController());
 			new Thread(t1).start();
 		}else {
 			setLabelResposta("Connection refused: connect");
 		}
-	}
+	} 
 	
 	private void setLabelResposta(String value) {
 		// TODO Auto-generated method stub
@@ -162,9 +180,17 @@ public class GameController {
 	}
 
 	public void startgameAction() {
+		
+		for (int x = 0; x < 12; x++) {
+			if (x < 6) {
+				GameController.game.meteoros.add(x, new Meteoro(ThreadLocalRandom.current().nextInt(1, 231), ThreadLocalRandom.current().nextInt(1, 4), ThreadLocalRandom.current().nextInt(1, 141)));
+			}else {
+				GameController.game.meteoros.add(x, new Meteoro(ThreadLocalRandom.current().nextInt(1, 231), ThreadLocalRandom.current().nextInt(328, 332), ThreadLocalRandom.current().nextInt(1, 141)));
+			}
+		}
+		
 		new Thread(t2).start();
 		matriz.getChildren().remove(comeca);
-		
 		boolean state = GameController.game.getGameStatusFirstPlayer();
 		
 		System.out.println(state);
@@ -203,5 +229,4 @@ public class GameController {
 	public void setTextFieldIP(String value) {
 		IP.setText(value);
 	}
-
 }

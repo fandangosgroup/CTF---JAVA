@@ -2,13 +2,18 @@ package com.github.uifxctf;
 	
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.fxml.FXMLLoader;
 import org.aerofx.AeroFX;
+
+import com.github.client.InputControllerGUI;
+import com.github.client.SocketRequestControl;
 
 
 
@@ -18,11 +23,12 @@ public class ClientFX extends Application {
 	
 	public static Scene telaHome;
 	public static Scene telaGame;
+	private static InputControllerGUI input;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		stage = primaryStage;
-		
+		 
 		primaryStage.setTitle("CTK - Capture The Key Game :D");
 		
 		Parent fxmlHome = FXMLLoader.load(getClass().getResource("TelaHome.fxml"));
@@ -32,7 +38,15 @@ public class ClientFX extends Application {
 		AeroFX.styleAllAsGroupBox(fxmlHome);
 		
 		Parent fxmlGame = FXMLLoader.load(getClass().getResource("TelaMatriz.fxml"));
-		telaGame = new Scene(fxmlGame,480,480);
+		fxmlGame.setFocusTraversable(true);
+		telaGame = new Scene(fxmlGame,360,360);
+		input= new InputControllerGUI();
+		telaGame.setOnKeyPressed(new EventHandler<KeyEvent>() {
+	        @Override
+	        public void handle(KeyEvent t) {
+	           input.setInputAtual(t.getCode().toString());
+	        }
+	    });
 		
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -46,13 +60,11 @@ public class ClientFX extends Application {
                 System.exit(0);
             }
         });
-		
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(telaHome);
 		primaryStage.show();
-		
 	}
-	
+
 	public static void chageScreen(String name) {
 		switch (name) {
 			case "home":
@@ -62,6 +74,10 @@ public class ClientFX extends Application {
 				stage.setScene(telaGame);
 				break;
 		}
+	}
+	
+	public static InputControllerGUI getInputController() {
+		return input;
 	}
 	
 	public static void main(String[] args) {

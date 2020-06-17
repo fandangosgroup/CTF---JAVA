@@ -2,6 +2,8 @@ package com.github.client;
 
 import java.util.ArrayList;
 
+import com.github.uifxctf.GameController;
+
 public class MatrixController {
     private char[][] data = new char[30][30];
     private String[] positions = null;
@@ -15,12 +17,14 @@ public class MatrixController {
     private Integer flagPositionX;
     private Integer flagPositionY;
     private boolean isFlagPresent = false;
+    private GameController game;
+    
     public MatrixController(char[][] d){
     	this.nop = false;
         setData(d);
     }
-    
-    public char[][] dataManipulation(InputController input, String dados, String id){
+   
+    public char[][] dataManipulation(InputControllerGUI input, String dados, String id){
         this.id = id;
         char moviment = input.getDir();
         this.processDados(dados);
@@ -30,11 +34,11 @@ public class MatrixController {
         //System.out.println("meu y é: " + this.positionY.toString());
         //System.out.println("meu time é: " + this.myTeam);
         //System.out.println("teamPosistions" + this.teamPositions);
-        this.clearMatriz();
+        this.clearMatriz(); 
         this.drawMatriz();
         this.enimyPositions.clear();
         this.teamPositions.clear();
-        this.isFlagPresent = false;
+        this.isFlagPresent = false; 
        
         return data;
    }
@@ -108,7 +112,7 @@ public class MatrixController {
     
     private void drawMatriz() {
     	for (int x = 0; x < getData().length; x++) {
-    		for (int y = 0; y < getData().length; y++) {
+    		for (int y = 0; y < getData().length; y++) { 
     			if(x == 0 || x == 29 || y == 0 || y == 29) {
     				this.data[x][y] = '#';
     			}
@@ -157,41 +161,36 @@ public class MatrixController {
     		}
     	}
     }
-    private void movePlayer(char moviment, InputController input){
-    	 switch(moviment){
+    private void movePlayer(char moviment, InputControllerGUI input){
          //pra cima == -1 no x
-         case 'w':
+         if(moviment == 'w' || moviment == 'u') {
         	 if(this.positionX > 1) {
         		 this.clearCurrentPostion();
                  this.positionX = this.positionX - 1;
         	 }
-        	 input.dirToZero();
-             break;
+         }
          //pra baixo == +1 no x
-         case 's':
+         if(moviment == 's' || moviment == 'b') {
         	 if(this.positionX < 28) {
-             this.clearCurrentPostion();
-             this.positionX = this.positionX + 1;
+        		 this.clearCurrentPostion();
+        		 this.positionX = this.positionX + 1;
         	 }
-             input.dirToZero();
-             break;
+    	}
          //pra esquerda = y-1
-         case 'a':
+         if(moviment == 'a' || moviment == 'l') {
         	 if(this.positionY > 1) {
-             this.clearCurrentPostion();
-             this.positionY = this.positionY - 1;
-        	 }
-             input.dirToZero();
-             break;
+                 this.clearCurrentPostion();
+                 this.positionY = this.positionY - 1;
+            	 }
+         }        	 
          //pra direita = y + 1
-         case 'd':
+         if(moviment == 'd' || moviment == 'r') {
         	 if(this.positionY < 28) {
-             this.clearCurrentPostion();
-             this.positionY = this.positionY + 1;
+        		 this.clearCurrentPostion();
+        		 this.positionY = this.positionY + 1;
         	 }
-             input.dirToZero();
-             break;
-    	 }
+         }
+         input.dirToZero();
     }
     private void captureTheFlag() {
     	for(int x =0; x < this.positions.length; x++) {
