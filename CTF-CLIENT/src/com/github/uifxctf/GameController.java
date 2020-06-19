@@ -1,9 +1,7 @@
 package com.github.uifxctf;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
-
 import com.github.client.Meteoro;
 import com.github.client.SocketRequestControl;
 import javafx.application.Platform;
@@ -13,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
 
 public class GameController {
 	
@@ -62,7 +59,7 @@ public class GameController {
 			while(GameController.game.getGameStatus() == true) {
 				//System.out.println("DEBUGGGGGGGGGGGGGGGGGGGG");
 				try {
-					Thread.sleep(100);
+					Thread.sleep(120);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -202,7 +199,7 @@ public class GameController {
 				System.out.println(Popup.getB());
 				GameController.game.setHash(Popup.getA());
 				GameController.game.setKey(Popup.getB());
-				System.out.println("Inseri as cosias");
+				//System.out.println("Inseri as cosias");
 			});
 		}
 	}

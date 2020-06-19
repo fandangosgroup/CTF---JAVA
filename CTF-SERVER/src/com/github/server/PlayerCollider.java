@@ -36,21 +36,21 @@ public class PlayerCollider {
         	//System.out.println("Chegou1");
         	for(i=0; i < id.size(); i++) {
         		for(z=0; z < id.size(); z++) {
-        			System.out.println("-----------------DEBUG-------------------");
-        			System.out.println(id.get(i) +"--"+ id.get(z));
-        			System.out.println(x.get(i) +"--"+ x.get(z));
-        			System.out.println(y.get(i) +"--"+ y.get(z));
-        			System.out.println(team.get(i) +"--"+ team.get(z));
-        			System.out.println("-----------------[DEBUG]-----------------");
+        			//System.out.println("-----------------DEBUG-------------------");
+        			//System.out.println(id.get(i) +"--"+ id.get(z));
+        			//System.out.println(x.get(i) +"--"+ x.get(z));
+        			//System.out.println(y.get(i) +"--"+ y.get(z));
+        			//System.out.println(team.get(i) +"--"+ team.get(z));
+        			//System.out.println("-----------------[DEBUG]-----------------");
         			
         			if(x.get(i).equals(Integer.toString(this.flag.getX())) && y.get(i).equals(Integer.toString(this.flag.getY()))) {
     					if(team.get(i).equals("A")) {
-    						System.out.println("Jogador pegou a Bandeira");
+    						//System.out.println("Jogador pegou a Bandeira");
         					this.flag.setPlayer(id.get(i));
         					this.flag.setX(Integer.parseInt(x.get(i)));
         					this.flag.setY(Integer.parseInt(y.get(i)));
     					}else {
-    						System.out.print("Fudeuuu chama a microsoft@!!!!");
+    						//System.out.print("Fudeuuu chama a microsoft@!!!!");
     					}
     				}
         			
@@ -58,7 +58,7 @@ public class PlayerCollider {
         				
         				if(Integer.parseInt(x.get(i)) <= 15 && team.get(i).equals("B")) {
         					if(id.get(z).equals(this.flag.getID())) {
-    							System.out.print("DEIXA  APORRA DA FLAG !!!!!!!!!!!!!!!!!!");
+    							//System.out.print("DEIXA  APORRA DA FLAG !!!!!!!!!!!!!!!!!!");
     							this.flag.setPlayer("VAZIO");
     							//this.flag.setX(Integer.parseInt(x.get(i)));
     							//this.flag.setY(Integer.parseInt(y.get(i)));
@@ -73,7 +73,7 @@ public class PlayerCollider {
     						
     						//System.exit(0);
         				}else if(Integer.parseInt(x.get(z)) > 15 && team.get(z).equals("A")){
-        					System.out.print("FUDEUUUUUUUUUUUUUUUUUU!!!!");
+        					//System.out.print("FUDEUUUUUUUUUUUUUUUUUU!!!!");
         					Respawn location = Kill(id.get(i), "B");
         					x.add(i, Integer.toString(location.getX()));
         					y.add(i, Integer.toString(location.getY()));
@@ -92,7 +92,7 @@ public class PlayerCollider {
         				}
         			}
         			
-        			System.out.println(this.flag.getID());
+        			//System.out.println(this.flag.getID());
         			
         			if(!this.flag.getID().equals("VAZIO")) {
         				if(id.get(i).equals(this.flag.getID())){

@@ -116,7 +116,7 @@ public class Server {
             //id2 = id1[3];
             //id1 = id1 + id2;
             int aux = Integer.parseInt(id1);
-            System.out.println(aux);
+            //System.out.println(aux);
 
             // cria tratador de cliente numa nova thread
             ps.println("idUser:"+aux); //manda o id do cliente ao conectar
@@ -141,20 +141,20 @@ public class Server {
     public void distribuiMensagem(String msg, int id) {
         // envia msg para todo mundo
     	if(this.savekey == false) {
-    		System.out.println("Entrou no send");
+    		//System.out.println("Entrou no send");
     		for (Clientes clientes : this.clientes) {
     			if(clientes.getCliente() != this.clientes.get(0).getCliente()) {
-    				clientes.getCliente().println("Esperando Chave...");
+    				//clientes.getCliente().println("Esperando Chave...");
     			}
     		}
     	}
     	
     	if(msg.substring(0,3).equals("K3Y")) {
-    		System.out.println("AQUI CHEGOU PORRA");
+    		//System.out.println("AQUI CHEGOU PORRA");
     		String[] hash = msg.split("-");
 			
-			System.out.println(hash[1]);
-			System.out.println(hash[2]);
+			//System.out.println(hash[1]);
+			//System.out.println(hash[2]);
 			this.hash = hash[1]; 
 			this.key = hash[2];
 			
@@ -165,8 +165,8 @@ public class Server {
 				Statement st = teste.createStatement();
 				//st.execute("SELECT * FROM USUARIOS");
 				st.execute("USE heroku_b481894670aeac7");
-				String sql = "INSERT INTO CRIPTO VALUES(null,'"+hash[1]+"','"+hash[2]+"')";
-				System.out.println(sql);
+				//String sql = "INSERT INTO CRIPTO VALUES(null,'"+hash[1]+"','"+hash[2]+"')";
+				//System.out.println(sql);
 				
 				//int resul = st.executeUpdate(sql);
 				
@@ -214,9 +214,9 @@ public class Server {
         	}
         	
         	location = collider.processa(location);
-        	System.out.println(location);
+        	//System.out.println(location);
         	boolean status = collider.getStatus();
-        	System.out.println("Game:"+status);
+        	//System.out.println("Game:"+status);
         	
         	if(status) {
         		for (Clientes cliente : this.clientes) {
@@ -230,7 +230,7 @@ public class Server {
         	}
         	
             for (Clientes cliente : this.clientes) {
-            	System.out.println("Cl:"+cliente.getID());
+            	//System.out.println("Cl:"+cliente.getID());
             	
             	
             	//cliente.getCliente().println("Quantidade:"+this.clientes.size());

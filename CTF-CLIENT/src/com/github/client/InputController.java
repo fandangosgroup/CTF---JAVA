@@ -6,6 +6,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 
 public class InputController extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public char dir;
 	
 	public InputController() {

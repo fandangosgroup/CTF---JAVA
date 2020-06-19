@@ -2,7 +2,6 @@ package com.github.uifxctf;
 	
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -11,11 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.fxml.FXMLLoader;
 import org.aerofx.AeroFX;
-
 import com.github.client.InputControllerGUI;
-import com.github.client.SocketRequestControl;
-
-
 
 public class ClientFX extends Application {
 	

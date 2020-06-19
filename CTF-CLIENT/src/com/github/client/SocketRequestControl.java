@@ -7,8 +7,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import javafx.scene.image.ImageView;
-
 public class SocketRequestControl {
   
     private static boolean firstplayer;
@@ -50,7 +48,7 @@ public class SocketRequestControl {
 		
 		while(!GameOver) {
 			String request = "M4X";
-			Thread.sleep(200);
+			Thread.sleep(230);
 			
 			saida.println("Me envie a matriz!");
 			if(r.select == 0 || r.select == 1){

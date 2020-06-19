@@ -2,8 +2,6 @@ package com.github.client;
 
 import java.util.ArrayList;
 
-import com.github.uifxctf.GameController;
-
 public class MatrixController {
     private char[][] data = new char[30][30];
     private String[] positions = null;
@@ -17,7 +15,6 @@ public class MatrixController {
     private Integer flagPositionX;
     private Integer flagPositionY;
     private boolean isFlagPresent = false;
-    private GameController game;
     
     public MatrixController(char[][] d){
     	this.nop = false;
