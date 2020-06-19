@@ -95,8 +95,8 @@ public class GameController {
 			for(x=0;x<30;x++) {
 				for(y=0;y<30;y++) {
 					if(matriz2[x][y] == '@') {
-						flag.setLayoutX(y * 10);
-						flag.setLayoutY(x * 10);
+						flag.setLayoutX(y * 12);
+						flag.setLayoutY(x * 12);
 						flag.setFitHeight(30);
 						flag.setFitWidth(30);
 						flag.setId("flag");
@@ -105,11 +105,12 @@ public class GameController {
 						});
 					}
 					if(matriz2[x][y] == 'X') {
-						player.setLayoutX(y * 10);
-						player.setLayoutY(x * 10);
+						player.setLayoutX(y * 12);
+						player.setLayoutY(x * 12);
 						player.setFitHeight(30);
 						player.setFitWidth(30);
 						player.setId("player");
+						player.setRotate(GameController.game.getPlayerRotate());
 						Platform.runLater(() -> {
 							matriz.getChildren().add(player);
 						});
@@ -118,8 +119,8 @@ public class GameController {
 						ImageView enemy = new ImageView(fenemy);
 						enemy.setFitHeight(30);
 						enemy.setFitWidth(30);
-						enemy.setLayoutX(y * 10);
-						enemy.setLayoutY(x * 10);
+						enemy.setLayoutX(y * 12);
+						enemy.setLayoutY(x * 12);
 						enemy.setId("enemy");
 						Platform.runLater(() -> {
 							matriz.getChildren().add(enemy);
@@ -129,8 +130,8 @@ public class GameController {
 						ImageView friend = new ImageView(ffriend);
 						friend.setFitHeight(30);
 						friend.setFitWidth(30);
-						friend.setLayoutX(y * 10);
-						friend.setLayoutY(x * 10);
+						friend.setLayoutX(y * 12);
+						friend.setLayoutY(x * 12);
 						friend.setId("friend");
 						Platform.runLater(() -> {
 							matriz.getChildren().add(friend);
@@ -226,4 +227,5 @@ public class GameController {
 	public void setTextFieldIP(String value) {
 		IP.setText(value);
 	}
+	
 }

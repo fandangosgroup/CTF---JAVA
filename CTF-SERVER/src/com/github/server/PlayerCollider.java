@@ -98,7 +98,7 @@ public class PlayerCollider {
         				if(id.get(i).equals(this.flag.getID())){
         					this.flag.setX(Integer.parseInt(x.get(i)));
         					this.flag.setY(Integer.parseInt(y.get(i)));
-        					if(Integer.parseInt(x.get(i)) > 16) {
+        					if(Integer.parseInt(x.get(i)) > 13) {
         						this.GameStatus = true;
         					}
         					//System.exit(0);

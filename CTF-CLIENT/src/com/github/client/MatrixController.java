@@ -215,5 +215,4 @@ public class MatrixController {
     public Integer getPosY(){
     	return this.positionY;
     }
-    
 }

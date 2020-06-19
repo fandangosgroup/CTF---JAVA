@@ -20,10 +20,10 @@ public class SocketRequestControl {
     private Socket cliente;
     private Recebedor recebedor;
     private PrintStream saida; 
-    private InputControllerGUI input;
+    protected InputControllerGUI input;
     private String key = "empty";
     private String hash = "empty";
-    
+    private MatrixController matrix;
     private boolean gamestatus = true;
     
     private char[][] matriz;
@@ -41,7 +41,7 @@ public class SocketRequestControl {
     	
     	char[][] data = new char[30][30];
 	    //InputController input = new InputController();
-    	MatrixController matrix = new MatrixController(data);
+    	this.matrix = new MatrixController(data);
 	    PrintConsole print = new PrintConsole();
 	    
 	    boolean GameOver = false;
@@ -155,5 +155,7 @@ public class SocketRequestControl {
 	public void setInput(InputControllerGUI input) {
 		this.input = input;
 	}
-  
+	public int getPlayerRotate() {
+		return this.input.getPlayerRotate();
+	}
 }
