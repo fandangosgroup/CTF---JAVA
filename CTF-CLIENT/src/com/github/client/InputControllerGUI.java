@@ -25,6 +25,9 @@ public class InputControllerGUI {
 	}
 	public void setPlayerRotate() {
 		char moviment = this.inputAtual.charAt(0);
+		if (this.inputAtual.equals("down")) {
+			moviment = 'b';
+		}
 		if(moviment == 'w' || moviment == 'u') {
 			this.playerRotate = 0;
 		}
