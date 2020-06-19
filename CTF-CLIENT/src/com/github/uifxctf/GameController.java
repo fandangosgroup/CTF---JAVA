@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class GameController {
 	
@@ -178,6 +180,10 @@ public class GameController {
 	}
 
 	public void startgameAction() {
+		String path = this.cl.getResource("\\resources\\sounds\\ambient.mp3").toString();
+		Media media = new Media(path);
+		MediaPlayer mp = new MediaPlayer(media);
+		mp.play();
 		
 		for (int x = 0; x < 12; x++) {
 			if (x < 6) {
@@ -186,7 +192,6 @@ public class GameController {
 				GameController.game.meteoros.add(x, new Meteoro(ThreadLocalRandom.current().nextInt(1, 231), ThreadLocalRandom.current().nextInt(328, 332), ThreadLocalRandom.current().nextInt(1, 141)));
 			}
 		}
-		
 		new Thread(t2).start();
 		matriz.getChildren().remove(comeca);
 		boolean state = GameController.game.getGameStatusFirstPlayer();

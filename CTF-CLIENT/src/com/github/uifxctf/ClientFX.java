@@ -8,6 +8,8 @@ import javafx.stage.WindowEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.fxml.FXMLLoader;
 import org.aerofx.AeroFX;
 import com.github.client.InputControllerGUI;
@@ -15,7 +17,7 @@ import com.github.client.InputControllerGUI;
 public class ClientFX extends Application {
 	
 	public static Stage stage;
-	
+	private ClassLoader cl = this.getClass().getClassLoader();
 	public static Scene telaHome;
 	public static Scene telaGame;
 	private static InputControllerGUI input;
