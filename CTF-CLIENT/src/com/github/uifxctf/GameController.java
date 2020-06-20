@@ -180,7 +180,7 @@ public class GameController {
 	}
 
 	public void startgameAction() {
-		String path = this.cl.getResource("\\resources\\sounds\\ambient.mp3").toString();
+		String path = this.cl.getResource("resources/sounds/ambient.mp3").toString();
 		Media media = new Media(path);
 		MediaPlayer mp = new MediaPlayer(media);
 		mp.play();

@@ -6,13 +6,17 @@ import java.io.IOException;
 
 public class ClientConsole {
 	
-	private String serverIP;
-	private String porta;
+	private static String serverIP;
+	private static String porta;
 
-	public SocketRequestControl game;
-	private BufferedReader arquivo;
+	public static SocketRequestControl game;
+	private static BufferedReader arquivo;
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+        StartGame();
+    }
  
-	public void StartGame() throws IOException {
+	public static void StartGame() throws IOException, InterruptedException {
 		arquivo = new BufferedReader(new FileReader("endereço.txt"));
 		String ip = arquivo.readLine();
 		setServerIP(ip);
@@ -22,12 +26,13 @@ public class ClientConsole {
 		String serverip = getServerIP();
 		System.out.println("Conectando em "+serverip +"....");
 		
-		this.game = new SocketRequestControl(serverip, Integer.parseInt(getPorta()));
-		this.game.setConsole(true);
-		this.game.executa();
+		game = new SocketRequestControl(serverip, Integer.parseInt(getPorta()));
+		game.setConsole(true);
+		game.executa();
+		game.runGame();
 	}
 	
-	public String getServerIP() {
+	public static String getServerIP() {
 		return serverIP;
 	}
 	
@@ -35,16 +40,16 @@ public class ClientConsole {
 		return game;
 	}
 	
-	public void setServerIP(String IP) {
-		this.serverIP = IP;
+	public static void setServerIP(String IP) {
+		serverIP = IP;
 	}
 	
-	public String getPorta() {
+	public static String getPorta() {
 		return porta;
 	}
 
-	public void setPorta(String porta) {
-		this.porta = porta;
+	public static void setPorta(String portaa) {
+		porta = portaa;
 	}
 	
 	public static void CleanScreen() throws IOException, InterruptedException {

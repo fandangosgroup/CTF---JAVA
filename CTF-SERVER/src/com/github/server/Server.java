@@ -164,7 +164,7 @@ public class Server {
     		try {
 				Statement st = teste.createStatement();
 				//st.execute("SELECT * FROM USUARIOS");
-				st.execute("USE heroku_b481894670aeac7");
+				//st.execute("USE heroku_b481894670aeac7");
 				//String sql = "INSERT INTO CRIPTO VALUES(null,'"+hash[1]+"','"+hash[2]+"')";
 				//System.out.println(sql);
 				

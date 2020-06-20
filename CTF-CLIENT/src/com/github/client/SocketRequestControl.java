@@ -6,6 +6,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SocketRequestControl {
   
@@ -40,7 +41,11 @@ public class SocketRequestControl {
     	PrintStream saida = this.saida;
     	
     	char[][] data = new char[30][30];
-	    //InputController input = new InputController();
+    	
+    	if(this.Console == true) {
+    		InputController inputC = new InputController();
+    	}
+	    
     	this.matrix = new MatrixController(data);
 	    PrintConsole print = new PrintConsole();
 	    
@@ -55,33 +60,46 @@ public class SocketRequestControl {
 				saida.println("Me envie a matriz!");
 			}
 			if(r.select == 2){
-				data = matrix.dataManipulation(input, r.data, r.id);
 				//System.out.println("GAME IS ONLINE!!");
 				if(this.Console) {
+					//data = matrix.dataManipulation(inputC, r.data, r.id);
 					ClientConsole.CleanScreen();
 					print.setMatriz(data);
 					print.RenderPrintConsole();
 				}else {
+					data = matrix.dataManipulation(input, r.data, r.id);
 					this.setMatriz(data);
+					request += r.id;
+					request += "-" + matrix.getPosX().toString();
+					request += "-" + matrix.getPosY().toString();
+					saida.println(request);
 				}
 				
-				request += r.id;
-				request += "-" + matrix.getPosX().toString();
-				request += "-" + matrix.getPosY().toString();
-				saida.println(request);
 				saida.println("Me envie a matriz!");
 			}
 			if(r.select == 3 && this.isKey == false) {
 				SocketRequestControl.firstplayer = true;
-				while(this.hash == "empty" && this.key == "empty") {
-					System.out.println("Esperando Chave");
-					System.out.println(this.hash);
-					System.out.println(this.key);
+				CriptoController cpt = new CriptoController();
+				
+				if(this.Console) {
+					Scanner s = new Scanner(System.in);
+					System.out.println("CAPTURE DE FLAG by BRUNO SAMPAIO, FABRICIO GALUDO, HOBITO e MESTRE CABELO");
+					System.out.println("DIGITE A FRASE QUE DESEJA ESCONDER");
+					cpt.inputData(s.nextLine());
+					System.out.println("DIGITE A CHAVE PARA ENCRIPTAR!");
+					cpt.inputKey(s.nextLine());
+					s.close();
+				}else {
+					while(this.hash == "empty" && this.key == "empty") {
+						System.out.println("Esperando Chave");
+						System.out.println(this.hash);
+						System.out.println(this.key);
+						
+					}
+					cpt.inputData(this.hash);
+					cpt.inputKey(this.key);
 				}
 				
-				CriptoController cpt = new CriptoController();
-				cpt.inputData(this.hash);
-				cpt.inputKey(this.key);
 				cpt.cesar();
 				saida.println("K3Y-" + cpt.getFinalString() + "-" + cpt.getKey());
 				this.isKey = true;
