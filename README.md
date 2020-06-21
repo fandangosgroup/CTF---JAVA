@@ -60,4 +60,12 @@ ultrapassar a área delimitada.
  Para que o time B vença, ele deve manter o membro da equipe A longe da
 flag, interceptando o membro do time A.
 
-
+#
+ A Proposta da matéria de programação I
+#
+ O jogo deve rodar no console e na interface grafica com o mesmo código
+#
+Prova de conceito
+##
+![](https://github.com/fandangosgroup/CTF---JAVA/blob/master/documentacao/prova%20de%20conceito.gif)
+##
