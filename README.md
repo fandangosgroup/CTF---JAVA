@@ -43,7 +43,8 @@ gerada pelo mapa.
 ---
 
 - ### 3- Movimentação
-Os controles para movimentação são as teclas W A S D.
+Os controles para movimentação são as teclas W A S D
+Na versão com interface grafica é possivel se movimentar com teclas direcionais do teclado também.
 
 ---
 
