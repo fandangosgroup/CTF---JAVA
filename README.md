@@ -10,8 +10,9 @@ frase/palavra no banco de dados, onde a palavra-chave é encriptada com a
 Cifra de Cesar, o time A deve capturar a bandeira para conseguir a chave e
 então desofuscar a frase/palavra inserida pelo primeiro jogador.
 #
-![](https://github.com/fandangosgroup/CTF---JAVA/blob/master/CTF-CLIENT/src/resources/images/enemy.png)
-
+# Documentacao
+![](https://github.com/fandangosgroup/CTF---JAVA/blob/master/documentacao/der.png)
+#
 
 
 
