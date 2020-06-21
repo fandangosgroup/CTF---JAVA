@@ -11,9 +11,10 @@ Cifra de Cesar, o time A deve capturar a bandeira para conseguir a chave e
 então desofuscar a frase/palavra inserida pelo primeiro jogador.
 #
 # Documentacao
+#
+DER
 ![](https://github.com/fandangosgroup/CTF---JAVA/blob/master/documentacao/der.png)
 #
-
 
 
 
