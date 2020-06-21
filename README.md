@@ -19,16 +19,14 @@ DER
 Diagrama de Classes
 #
 ![](https://github.com/fandangosgroup/CTF---JAVA/blob/master/documentacao/uml_final.png)
+#
+Diagrama de Caso de Uso
+#
+![](https://github.com/fandangosgroup/CTF---JAVA/blob/master/documentacao/cu.png)
 
-
-
-
-
-
-
-
-
-
+#
+Manual do Jogo
+#
 
 - ### 1- Modo de jogo
  Para poder jogar capture the flag, precisará de dois jogadores e ambos terão
