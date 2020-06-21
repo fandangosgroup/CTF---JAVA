@@ -16,7 +16,9 @@ DER
 #
 ![](https://github.com/fandangosgroup/CTF---JAVA/blob/master/documentacao/der.png)
 #
-
+Diagrama de Classes
+#
+![](https://github.com/fandangosgroup/CTF---JAVA/blob/master/documentacao/uml_final.png)
 
 
 
